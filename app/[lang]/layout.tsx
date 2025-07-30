@@ -1,10 +1,14 @@
-import { Gothic_A1, Noto_Sans, Noto_Sans_JP } from "next/font/google";
-import localFont from "next/font/local";
-import { Shippori_Mincho } from "next/font/google";
-import "./globals.css";
-import { TranslationsProvider } from "@/providers/translation-provider";
-import { getDictionary } from "./dictionaries";
 import { QueryProvider } from "@/providers/query-provider";
+import { TranslationsProvider } from "@/providers/translation-provider";
+import {
+  Gothic_A1,
+  Noto_Sans,
+  Noto_Sans_JP,
+  Shippori_Mincho,
+} from "next/font/google";
+import localFont from "next/font/local";
+import { getDictionary } from "./dictionaries";
+import "./globals.css";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
@@ -44,6 +48,12 @@ const gothicFont = Gothic_A1({
   display: "swap",
 });
 
+export const metadata = {
+  icons: {
+    icon: "/favicon.png",
+  },
+};
+
 export default async function RootLayout({
   children,
   params,
@@ -55,10 +65,6 @@ export default async function RootLayout({
   const dict = await getDictionary(lang);
   return (
     <html lang={lang}>
-      <head>
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <link rel="icon" type="image/webp" href="/favicon.webp" />
-      </head>
       <body
         className={`${notoSansJP.variable} ${notoSans.variable} ${helveticaNeueBold.variable} ${helveticaNeueRoman.variable} ${shipporiMincho.variable} ${gothicFont.variable} antialiased`}
       >
