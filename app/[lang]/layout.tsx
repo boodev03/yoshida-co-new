@@ -48,12 +48,6 @@ const gothicFont = Gothic_A1({
   display: "swap",
 });
 
-export const metadata = {
-  icons: {
-    icon: "/favicon.png",
-  },
-};
-
 export default async function RootLayout({
   children,
   params,

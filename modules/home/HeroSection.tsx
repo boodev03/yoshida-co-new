@@ -5,7 +5,7 @@ import { useTranslations } from "@/providers/translation-provider";
 
 const ScrollDown = () => {
   const { tPath } = useTranslations();
-  
+
   return (
     <motion.div className="absolute bottom-0 md:bottom-[unset] z-10 md:top-[65%] right-8 md:right-16 flex items-center rotate-90 gap-2 cursor-default origin-bottom-right transition-opacity duration-300">
       <p className="text-helvetica-neue-bold text-[10px] md:text-xs leading-[16px] tracking-[0.025em] w-max uppercase text-[#1247AF] md:text-white font-medium">
@@ -36,7 +36,7 @@ const ScrollDown = () => {
 
 export default function HeroSection() {
   const { tPath } = useTranslations();
-  
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -63,7 +63,7 @@ export default function HeroSection() {
             }}
           />
           <video
-            src="https://ivjnghkfdaeblmxlmzqy.supabase.co/storage/v1/object/public/yoshida-cor//01%20Hero%20section%20movie.mp4"
+            src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/01%20Hero%20section%20movie.mp4"
             autoPlay
             muted
             loop
