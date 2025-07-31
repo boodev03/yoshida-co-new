@@ -94,7 +94,7 @@ export default function VisionSection() {
             <p className="whitespace-pre-wrap break-words text-jp-p1 text-web-dark">
               {tPath("home.vision.content")}
             </p>
-            <Button asChild variant="outline">
+            <Button asChild>
               <Link href="/company">
                 {tPath("home.vision.button")}
                 <ArrowRight />

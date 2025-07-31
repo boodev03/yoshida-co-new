@@ -110,9 +110,12 @@ export default function Footer() {
               </div>
               <div className="basis-1/3 space-y-10">
                 <div className="space-y-4">
-                  <p className="text-white hidden md:block text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white">
+                  <Link
+                    href="/technology"
+                    className="text-white hidden md:block text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white"
+                  >
                     ヨシダの技術
-                  </p>
+                  </Link>
                   <ul className="space-y-2 hidden md:block">
                     {["設計", "製缶・溶接", "機械加工", "研究開発"].map(
                       (item, index) => (
@@ -170,9 +173,12 @@ export default function Footer() {
                   </Accordion>
                 </div>
                 <div className="space-y-4">
-                  <p className="text-white hidden md:block text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white">
+                  <Link
+                    href="/factory-and-quality"
+                    className="text-white hidden md:block text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white"
+                  >
                     工場と品質への取り組み
-                  </p>
+                  </Link>
                   <ul className="space-y-2 hidden md:block">
                     {["工場設備", "品質保証"].map((item, index) => (
                       <li key={index}>

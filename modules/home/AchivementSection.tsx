@@ -100,7 +100,7 @@ export default function AchivementSection() {
               transition={{ duration: 0.5, delay: 0.9 }}
               className="mt-6"
             >
-              <Link href="/technology/development">
+              <Link href="/case">
                 <Button className="bg-white text-web-main hover:bg-web-main hover:border-white hover:text-white">
                   {tPath("home.achievement.button")}
                   <ArrowRight />

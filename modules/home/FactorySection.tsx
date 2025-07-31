@@ -69,7 +69,7 @@ export default function FactorySection() {
       href: "/factory-and-quality/equipment",
     },
     {
-      image: "/images/top/top-09.webp",
+      image: "/images/recruit/19 airtightness test.png",
       title: tPath("home.factory.cards.quality"),
       href: "/factory-and-quality/quality",
     },
@@ -140,7 +140,7 @@ export default function FactorySection() {
           className="flex justify-center"
         >
           <Button asChild className="group relative overflow-hidden">
-            <Link href="/company">
+            <Link href="/factory-and-quality">
               {tPath("home.factory.button")}
               <ArrowRight />
             </Link>
