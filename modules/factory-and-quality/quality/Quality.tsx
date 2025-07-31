@@ -23,7 +23,7 @@ export default function Quality() {
         ]}
       />
 
-      <div className="py-[60px] md:py-[120px] space-y-20 md:space-y-[120px]">
+      <div className="pt-[60px] md:pt-[120px] space-y-20 md:space-y-[120px]">
         <div className="px-6 container mx-auto">
           <CorporateHeading
             sectionName={overview.sectionName}
@@ -94,10 +94,10 @@ export default function Quality() {
           />
         </div>
       </div>
-      <div className="hidden mlg:block">
+      <div className="hidden mlg:block pb-[390px] bg-web-light-bg">
         <Inpsection />
       </div>
-      <div className="block mlg:hidden">
+      <div className="block mlg:hidden pb-[60px] bg-web-light-bg">
         <Certification />
       </div>
     </section>

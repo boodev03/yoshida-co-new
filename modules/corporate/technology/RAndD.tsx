@@ -61,7 +61,7 @@ export default function RAndD() {
         </motion.div>
 
         <motion.div
-          className="flex flex-col gap-6 mlg:flex-row mlg:items-center mlg:gap-8"
+          className="flex flex-col-reverse gap-6 mlg:flex-row mlg:items-center mlg:gap-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -92,6 +92,7 @@ export default function RAndD() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.7 }}
+              className="flex justify-center mlg:block"
             >
               <Link href="/technology/development">
                 <Button className="group relative overflow-hidden">

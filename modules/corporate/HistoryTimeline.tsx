@@ -8,7 +8,7 @@ import { useTranslations } from "@/providers/translation-provider";
 
 export default function HistoryTimeline() {
   const { company } = useTranslations();
-  
+
   const sections = [
     { id: "greeting", title: company.timeline.sections.greeting },
     { id: "history", title: company.timeline.sections.history },
@@ -48,7 +48,7 @@ export default function HistoryTimeline() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-[120px] py-[60px] mlg:py-[120px]">
       <div className="mlg:flex gap-8 min-h-screen">
         {/* Sticky Sidebar */}
         <aside className="w-[160px] hidden mlg:block">
@@ -80,7 +80,7 @@ export default function HistoryTimeline() {
           </div>
         </aside>
         {/* Content */}
-        <div className="flex-1 pt-[120px] py-[60px] mlg:py-[120px]">
+        <div className="flex-1">
           <div
             ref={(el) => {
               sectionRefs.current["history"] = el;

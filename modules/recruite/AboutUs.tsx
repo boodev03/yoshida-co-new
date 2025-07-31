@@ -60,23 +60,11 @@ export default function AboutUs() {
     return -scrollDelta * 0.15;
   });
 
-  const rotateFloat1 = useTransform(scrollY, (value) => {
-    if (!isInView) return -30;
-    const scrollDelta = value - startScrollY;
-    return -30 + Math.sin(scrollDelta * 0.003) * 5;
-  });
-
   // Second triangle movement - horizontal wave with rotation and scale
   const xFloat2 = useTransform(scrollY, (value) => {
     if (!isInView) return 0;
     const scrollDelta = value - startScrollY;
     return Math.sin(scrollDelta * 0.004) * 20;
-  });
-
-  const rotateFloat2 = useTransform(scrollY, (value) => {
-    if (!isInView) return -45;
-    const scrollDelta = value - startScrollY;
-    return -45 + Math.cos(scrollDelta * 0.005) * 8;
   });
 
   const scaleFloat2 = useTransform(scrollY, (value) => {
@@ -183,37 +171,7 @@ export default function AboutUs() {
           </motion.p>
         </motion.div>
 
-        {/* First triangle with vertical float, rotation, and fine grainy effect */}
-        <motion.div
-          initial={{ opacity: 0, rotate: -20 }}
-          whileInView={{ opacity: 1, rotate: -30 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.3 }}
-          style={{
-            y: yFloat1,
-            rotate: rotateFloat1,
-            clipPath: "polygon(0% 0%, 100% 50%, 0% 100%)",
-            filter: "url(#fineGrainy)",
-          }}
-          className="size-[200px] sm:size-[300px] md:size-[500px] absolute -rotate-[30deg] sm:-rotate-[35deg] xl:-rotate-45 bg-web-light-bg top-[60%] -translate-y-1/2 xl:-translate-y-0 md:top-[60%] right-0 md:right-0 translate-x-1/3 sm:translate-x-1/3 md:translate-x-1/2 -z-[1]"
-        >
-          <svg width="0" height="0">
-            <filter id="fineGrainy">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.8"
-                numOctaves="2"
-                stitchTiles="stitch"
-              />
-              <feComponentTransfer>
-                <feFuncA type="linear" slope="0.3" intercept="0.35" />
-              </feComponentTransfer>
-              <feBlend mode="soft-light" in="SourceGraphic" />
-            </filter>
-          </svg>
-        </motion.div>
-
-        {/* Second triangle with horizontal wave, rotation, scale, and fine grainy effect */}
+        {/* First triangle - TOP LEFT */}
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -222,26 +180,51 @@ export default function AboutUs() {
           style={{
             x: xFloat2,
             scale: scaleFloat2,
-            rotate: rotateFloat2,
-            clipPath: "polygon(0% 0%, 100% 50%, 0% 100%)",
-            filter: "url(#fineGrainy)",
           }}
-          className="size-[300px] sm:size-[400px] md:size-[600px] xl:size-[800px] absolute bg-web-light-bg top-1/4 sm:top-1/5 md:top-[15%] xl:top-[5%] -translate-x-1/3 sm:-translate-x-1/4 md:-translate-x-1/5 xl:-translate-x-0 -left-[20%] sm:-left-[15%] md:-left-[10%] -z-[1]"
+          className="w-[300px] h-[260px] sm:w-[500px] sm:h-[435px] md:w-[1200px] md:!h-[1051px] absolute top-0 left-0 -translate-x-1/3 sm:-translate-x-1/2 md:-translate-x-1/2 -z-[1] -rotate-[110deg]"
         >
-          <svg width="0" height="0">
-            <filter id="fineGrainy">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.8"
-                numOctaves="2"
-                stitchTiles="stitch"
-              />
-              <feComponentTransfer>
-                <feFuncA type="linear" slope="0.3" intercept="0.35" />
-              </feComponentTransfer>
-              <feBlend mode="soft-light" in="SourceGraphic" />
-            </filter>
-          </svg>
+          <Image
+            src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+            alt="Triangle decoration"
+            fill
+          />
+        </motion.div>
+
+        {/* Second triangle - CENTER RIGHT */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, delay: 0.4 }}
+          style={{
+            x: xFloat2,
+            scale: scaleFloat2,
+          }}
+          className="w-[400px] h-[350px] sm:w-[600px] sm:h-[525px] md:w-[1600px] md:!h-[1390px] absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/3 sm:translate-x-1/2 md:translate-x-1/2 -z-[1] -rotate-[110deg]"
+        >
+          <Image
+            src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+            alt="Triangle decoration"
+            fill
+          />
+        </motion.div>
+
+        {/* Third triangle - BOTTOM LEFT */}
+        <motion.div
+          initial={{ opacity: 0, rotate: -20 }}
+          whileInView={{ opacity: 1, rotate: -30 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+          style={{
+            y: yFloat1,
+          }}
+          className="size-[120px] sm:size-[200px] md:size-[500px] absolute bottom-0 left-0 -translate-x-2/3 sm:-translate-x-full md:-translate-x-full -z-[1] rotate-[60deg]"
+        >
+          <Image
+            src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+            alt="Triangle decoration"
+            fill
+          />
         </motion.div>
       </motion.section>
     </div>

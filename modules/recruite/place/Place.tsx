@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "@/providers/translation-provider";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export default function Place() {
   const { dict } = useTranslations();
@@ -22,16 +23,22 @@ export default function Place() {
     setIsInView(false);
   };
 
-  const yFloat = useTransform(scrollY, (value) => {
+  const yFloat1 = useTransform(scrollY, (value) => {
     if (!isInView) return 0;
     const scrollDelta = value - startScrollY;
-    return -scrollDelta * 0.2;
+    return -scrollDelta * 0.15;
   });
 
-  const xFloat = useTransform(scrollY, (value) => {
+  const xFloat2 = useTransform(scrollY, (value) => {
     if (!isInView) return 0;
     const scrollDelta = value - startScrollY;
-    return Math.sin(scrollDelta * 0.005) * 15;
+    return Math.sin(scrollDelta * 0.004) * 20;
+  });
+
+  const scaleFloat2 = useTransform(scrollY, (value) => {
+    if (!isInView) return 1;
+    const scrollDelta = value - startScrollY;
+    return 1 + Math.sin(scrollDelta * 0.006) * 0.05;
   });
 
   return (
@@ -103,92 +110,60 @@ export default function Place() {
       {/* Main content */}
 
       <div className="relative">
-        {/* Decors with conditional movement and fine grainy effect */}
-        <motion.div
-          initial={{ opacity: 0, rotate: -20 }}
-          whileInView={{ opacity: 1, rotate: -30 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.3 }}
-          style={{
-            x: xFloat,
-            y: yFloat,
-            clipPath: "polygon(0% 0%, 100% 50%, 0% 100%)",
-            filter: "url(#fineGrainy)",
-          }}
-          className="size-[200px] md:size-[1600px] absolute rotate-[30deg] xl:-rotate-[10deg] bg-web-light-bg bottom-0 translate-y-1/3 md:bottom-0 md:top-[unset] left-0 t-ranslate-x-1/3 -z-[1]"
-        >
-          <svg width="0" height="0">
-            <filter id="fineGrainy">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.8"
-                numOctaves="2"
-                stitchTiles="stitch"
-              />
-              <feComponentTransfer>
-                <feFuncA type="linear" slope="0.3" intercept="0.35" />
-              </feComponentTransfer>
-              <feBlend mode="soft-light" in="SourceGraphic" />
-            </filter>
-          </svg>
-        </motion.div>
+        {/* First triangle - TOP LEFT */}
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1, delay: 0.2 }}
           style={{
-            x: xFloat,
-            y: yFloat,
-            rotate: -45,
-            clipPath: "polygon(0% 0%, 100% 50%, 0% 100%)",
-            filter: "url(#fineGrainy)",
+            x: xFloat2,
+            scale: scaleFloat2,
           }}
-          className="size-[300px] xl:size-[800px] absolute bg-web-light-bg top-1/4 xl:-top-[15%] -translate-x-1/3 xl:-translate-x-0 left-0 -z-[1]"
+          className="w-[300px] h-[260px] sm:w-[500px] sm:h-[435px] md:w-[1200px] md:!h-[1051px] absolute top-0 left-0 -translate-x-1/3 sm:-translate-x-1/2 md:-translate-x-1/2 -z-[1] -rotate-[110deg]"
         >
-          <svg width="0" height="0">
-            <filter id="fineGrainy">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.8"
-                numOctaves="2"
-                stitchTiles="stitch"
-              />
-              <feComponentTransfer>
-                <feFuncA type="linear" slope="0.3" intercept="0.35" />
-              </feComponentTransfer>
-              <feBlend mode="soft-light" in="SourceGraphic" />
-            </filter>
-          </svg>
+          <Image
+            src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+            alt="Triangle decoration"
+            fill
+          />
         </motion.div>
+
+        {/* Second triangle - CENTER RIGHT */}
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1, delay: 0.4 }}
           style={{
-            x: xFloat,
-            y: yFloat,
-            rotate: -80,
-            clipPath: "polygon(0% 0%, 100% 50%, 0% 100%)",
-            filter: "url(#fineGrainy)",
+            x: xFloat2,
+            scale: scaleFloat2,
           }}
-          className="size-[300px] xl:size-[1200px] bg-web-light-bg absolute top-[94px] xl:top-1/2 translate-x-1/3 xl:translate-x-0 xl:-translate-y-1/2 right-0 -z-[2]"
+          className="w-[400px] h-[350px] sm:w-[600px] sm:h-[525px] md:w-[1600px] md:!h-[1390px] absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/3 sm:translate-x-1/2 md:translate-x-1/2 -z-[1] -rotate-[110deg]"
         >
-          <svg width="0" height="0">
-            <filter id="fineGrainy">
-              <feTurbulence
-                type="fractalNoise"
-                baseFrequency="0.8"
-                numOctaves="2"
-                stitchTiles="stitch"
-              />
-              <feComponentTransfer>
-                <feFuncA type="linear" slope="0.3" intercept="0.35" />
-              </feComponentTransfer>
-              <feBlend mode="soft-light" in="SourceGraphic" />
-            </filter>
-          </svg>
+          <Image
+            src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+            alt="Triangle decoration"
+            fill
+          />
+        </motion.div>
+
+        {/* Third triangle - BOTTOM LEFT */}
+        <motion.div
+          initial={{ opacity: 0, rotate: -20 }}
+          whileInView={{ opacity: 1, rotate: -30 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.3 }}
+          style={{
+            y: yFloat1,
+          }}
+          className="size-[120px] sm:size-[200px] md:size-[500px] absolute bottom-0 left-0 -translate-x-2/3 sm:-translate-x-full md:-translate-x-full -z-[1] rotate-[60deg]"
+        >
+          <Image
+            src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+            alt="Triangle decoration"
+            fill
+          />
         </motion.div>
         <div className="container mx-auto pt-0 md:pt-[120px] space-y-6 md:space-y-20">
           <div className="flex flex-col gap-6 md:flex-row-reverse md:justify-between">
@@ -212,12 +187,17 @@ export default function Place() {
                 <p className="text-[13px] text-web-dark mlg:text-sm">
                   {place.sections.headquarters.address.value}
                 </p>
-                <a
-                  href="#"
-                  className="underline block text-web-light text-[13px] font-bold"
+                <Button
+                  className="underline block text-web-light text-[13px] font-bold p-0 bg-transparent hover:bg-transparent hover:border-none border-none"
+                  onClick={() =>
+                    window.open(
+                      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.833267743164!2d140.49747757628055!3d36.33829169360034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60223ab1054292eb%3A0x9e84cbe46b956eb4!2s1279-1%20Rokutandachō%2C%20Mito%2C%20Ibaraki%20311-1135%2C%20Japan!5e1!3m2!1sen!2sru!4v1753895635133!5m2!1sen!2sru",
+                      "_blank"
+                    )
+                  }
                 >
                   Map
-                </a>
+                </Button>
               </div>
             </motion.div>
             <motion.div

@@ -14,7 +14,7 @@ export default function ContactSection() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8 }}
-      className="relative pb-20 px-6"
+      className="relative pb-20 bg-web-dark"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -22,13 +22,13 @@ export default function ContactSection() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.7, delay: 0.2 }}
         className={cn(
-          "container mx-auto bg-web-main z-100 relative top-0",
+          "container mx-auto bg-web-main z-100 relative mlg:-translate-y-2/3",
           "px-6 md:px-[120px] py-[60px] md:py-20 md:h-[390px] md:mx-auto"
         )}
       >
         <div
           className={cn(
-            "flex items-center",
+            "flex items-center relative",
             "flex-col md:flex-row justify-center md:justify-between gap-12"
           )}
         >
@@ -125,18 +125,6 @@ export default function ContactSection() {
           </motion.div>
         </div>
       </motion.div>
-
-      {/* Apart of background */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, delay: 0.1 }}
-        className="absolute bottom-0 left-0 size-full bg-web-dark"
-        style={{
-          clipPath: "polygon(0% 50%, 100% 50%, 100% 101%, 0% 101%)",
-        }}
-      />
     </motion.section>
   );
 }

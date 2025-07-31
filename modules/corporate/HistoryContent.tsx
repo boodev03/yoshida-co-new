@@ -21,7 +21,7 @@ export default function HistoryContent() {
   const { company } = useTranslations();
   const { history } = company;
   return (
-    <div className="py-[120px] mb-[246px]">
+    <div className="mb-[60px] mlg:mb-[246px]">
       <div className="pb-12 mlg:border-b-2 border-line-gray w-full space-y-2">
         <div className="relative">
           <div
@@ -49,7 +49,9 @@ export default function HistoryContent() {
               className={cn(
                 "flex flex-col gap-6 md:flex-row md:gap-[96px]",
                 index !== 0 ? "py-6" : "pb-6",
-                index === history.timeline.length - 1 ? "border-b border-line-gray" : "",
+                index === history.timeline.length - 1
+                  ? "border-b border-line-gray"
+                  : "",
                 !images && "md:items-center"
               )}
             >

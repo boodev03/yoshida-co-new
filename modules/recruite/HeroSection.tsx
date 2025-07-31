@@ -93,7 +93,7 @@ export default function HeroSection() {
               clipPath: "polygon(0% 0%, 100% 0%, 95% 100%, 0% 100%)",
             }}
           >
-            <p className="text-jp-h1 text-web-main font-normal py-4 sm:py-5 md:py-5 mlg:py-6 leading-[17px] sm:leading-[20px] md:leading-[22px] mlg:leading-[25px]">
+            <p className="text-jp-h1 font-georgian text-web-main font-normal py-4 sm:py-5 md:py-5 mlg:py-6 leading-[17px] sm:leading-[20px] md:leading-[22px] mlg:leading-[25px]">
               {hero.subtitle}
             </p>
           </motion.div>

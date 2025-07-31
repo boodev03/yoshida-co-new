@@ -49,9 +49,9 @@ export default function CertificationContent() {
       </div>
 
       <div className="pt-20 mlg:px-16">
-        <div className="flex gap-8 overflow-x-auto flex-wrap">
+        <div className="flex gap-8 overflow-x-auto md:flex-wrap">
           {[...Array(6)].map((_, index) => (
-            <div key={index} className="relative">
+            <div key={index} className="relative shrink-0">
               <img
                 src={`/images/company/cert-${index + 1}.png`}
                 alt={`Certification image ${index + 1}`}

@@ -30,7 +30,7 @@ export default function HeadingSite({
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.7, delay: 0.2 }}
       >
-        <p className="flex flex-col text-white flex-1 max-w-[50%]">
+        <p className="flex flex-col text-white flex-1 max-w-[75%] xl:max-w-[50%]">
           <motion.span
             className="section-title text-[13px] md:text-[16px]"
             initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ export default function HeadingSite({
             {title}
           </motion.span>
           <motion.span
-            className="text-jp-h1 text-[20px] md:text-[36px] max-w-[80%] whitespace-pre-wrap"
+            className="block text-jp-h1 text-[20px] md:text-[36px] whitespace-pre-line break-words"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}

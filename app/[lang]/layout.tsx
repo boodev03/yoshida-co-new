@@ -3,6 +3,7 @@ import { TranslationsProvider } from "@/providers/translation-provider";
 import {
   Gothic_A1,
   Noto_Sans,
+  Noto_Sans_Georgian,
   Noto_Sans_JP,
   Shippori_Mincho,
 } from "next/font/google";
@@ -48,6 +49,12 @@ const gothicFont = Gothic_A1({
   display: "swap",
 });
 
+const georgian = localFont({
+  src: "./fonts/georgia.woff",
+  variable: "--font-georgian",
+  display: "swap",
+});
+
 export default async function RootLayout({
   children,
   params,
@@ -60,7 +67,7 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <body
-        className={`${notoSansJP.variable} ${notoSans.variable} ${helveticaNeueBold.variable} ${helveticaNeueRoman.variable} ${shipporiMincho.variable} ${gothicFont.variable} antialiased`}
+        className={`${notoSansJP.variable} ${georgian.variable} ${notoSans.variable} ${helveticaNeueBold.variable} ${helveticaNeueRoman.variable} ${shipporiMincho.variable} ${gothicFont.variable} antialiased`}
       >
         <QueryProvider>
           <TranslationsProvider dict={dict} locale={lang}>

@@ -155,7 +155,7 @@ export default function CareerPathCard({
           <p className="text-base text-web-main font-bold mb-4 text-center">
             NOW
           </p>
-          <div className="bg-web-main w-[88px] h-[264px] flex flex-row-reverse justify-center items-center">
+          <div className="bg-web-main w-[88px] h-[264px] py-2 flex flex-row-reverse justify-center items-center">
             <p
               style={{
                 writingMode: "vertical-rl",

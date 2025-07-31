@@ -6,13 +6,14 @@ import Link from "next/link";
 import { useTransform, motion, useScroll } from "framer-motion";
 import { useRef, useState } from "react";
 import { useTranslations } from "@/providers/translation-provider";
+import { cn } from "@/lib/utils";
 
 export default function WorkEnviroment() {
   const sectionRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
   const [startScrollY, setStartScrollY] = useState(0);
   const { scrollY } = useScroll();
-  const { recruit } = useTranslations();
+  const { recruit, locale } = useTranslations();
   const { workEnvironment } = recruit;
 
   // Track when the element enters viewport
@@ -156,12 +157,24 @@ export default function WorkEnviroment() {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="relative text-xl text-white font-shippori-mincho font-bold bg-web-main p-4 w-fit flex flex-col items-center gap-4"
               >
-                {workEnvironment.careerPath.split("").map((char, index) => (
-                  <span key={index}>
-                    {char}{" "}
-                    {index < workEnvironment.careerPath.length - 1 && <br />}
-                  </span>
-                ))}
+                <p
+                  style={{
+                    writingMode: "vertical-lr",
+                    WebkitWritingMode: "vertical-lr",
+                    msWritingMode: "vertical-lr",
+                  }}
+                  className={cn(locale === "ja" && "hidden")}
+                >
+                  {workEnvironment.careerPath}
+                </p>
+                <p className={cn(locale === "en" && "hidden")}>
+                  {workEnvironment.careerPath.split("").map((char, index) => (
+                    <span key={index}>
+                      {char}{" "}
+                      {index < workEnvironment.careerPath.length - 1 && <br />}
+                    </span>
+                  ))}
+                </p>
                 <motion.div
                   initial={{ y: -5 }}
                   animate={{ y: 5 }}
@@ -195,18 +208,39 @@ export default function WorkEnviroment() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="relative text-xl text-white font-shippori-mincho font-bold bg-web-main p-4 w-fit flex flex-col items-center gap-4"
+                className={cn(
+                  "relative text-xl text-white font-shippori-mincho font-bold bg-web-main p-4 w-fit flex flex-col items-center gap-4"
+                )}
               >
-                {workEnvironment.workEnvironment
-                  .split("")
-                  .map((char, index) => (
-                    <span key={index}>
-                      {char}{" "}
-                      {index < workEnvironment.workEnvironment.length - 1 && (
-                        <br />
-                      )}
-                    </span>
-                  ))}
+                <p className={cn(locale === "en" && "hidden")}>
+                  {workEnvironment.workEnvironment
+                    .split("")
+                    .map((char, index) => (
+                      <span
+                        style={{
+                          writingMode: "vertical-lr",
+                          WebkitWritingMode: "vertical-lr",
+                          msWritingMode: "vertical-lr",
+                        }}
+                        key={index}
+                      >
+                        {char}{" "}
+                        {index < workEnvironment.workEnvironment.length - 1 && (
+                          <br />
+                        )}
+                      </span>
+                    ))}
+                </p>
+                <p
+                  style={{
+                    writingMode: "vertical-lr",
+                    WebkitWritingMode: "vertical-lr",
+                    msWritingMode: "vertical-lr",
+                  }}
+                  className={cn(locale === "ja" && "hidden")}
+                >
+                  {workEnvironment.workEnvironment}
+                </p>
                 <motion.div
                   initial={{ y: -5 }}
                   animate={{ y: 5 }}

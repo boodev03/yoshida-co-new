@@ -16,7 +16,7 @@ export default function CareerSection() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8 }}
-      className="pt-5 mlg:pt-[200px] pb-[140px] relative"
+      className="pt-5 mlg:pt-[200px] pb-[100px] mlg:pb-[390px] relative"
     >
       <div className="container">
         <div

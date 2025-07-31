@@ -116,7 +116,7 @@ export default function AchivementSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="bg-web-vivid md:hidden aspect-[375/358] flex justify-center items-center px-0 sm:px-[15%]"
+          className="bg-web-main md:hidden aspect-[375/358] flex justify-center items-center px-0 sm:px-[15%]"
           style={{
             clipPath: "polygon(0% 25%, 20% 0%, 100% 0%, 100% 100%, 0% 100%)",
           }}

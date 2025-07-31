@@ -147,12 +147,12 @@ export default function ContentSection({
               : "polygon(0% 0%, 75% 0%, 100% 100%, 0% 100%)",
         }}
         className={cn(
-          "absolute top-0 right-0 bg-web-gray size-full",
-          align === "right" && "justify-start"
+          "absolute top-0 right-0 bg-web-gray size-full origin-right",
+          align === "right" && "justify-start origin-left"
         )}
         initial={{ opacity: 0, scaleX: 0 }}
         whileInView={{ opacity: 1, scaleX: 1 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.1 }}
       />
     </div>

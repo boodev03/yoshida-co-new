@@ -11,23 +11,24 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import { equipmentList } from "./data";
+import { equipmentList as equipmentListJP, equipmentListEnglish } from "./data";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "@/providers/translation-provider";
 
 export default function EquipmentList() {
-  const { equipment } = useTranslations();
+  const { equipment, locale } = useTranslations();
   const { equipmentList: equipmentListTranslations } = equipment;
   const [visibleItems, setVisibleItems] = useState(10);
+  const data = locale === "en" ? equipmentListEnglish : equipmentListJP;
 
   const handleShowMore = () => {
-    if (visibleItems < equipmentList.length) {
-      setVisibleItems((prev) => prev + 10);
+    if (visibleItems < data.length) {
+      setVisibleItems(() => data.length);
     }
   };
 
   return (
-    <div className="py-[60px] md:py-[120px]">
+    <div className="py-[60px] md:py-[120px] pb-[60px] mlg:pb-[390px]">
       <div className="w-full space-y-2 flex flex-col items-center justify-center">
         <div className="relative">
           <div
@@ -63,7 +64,7 @@ export default function EquipmentList() {
           </TableHeader>
           {/* Mobile */}
           <TableBody className="mlg:hidden">
-            {equipmentList.slice(0, visibleItems).map((equipment, index) => (
+            {data.slice(0, visibleItems).map((equipment, index) => (
               <TableRow key={index}>
                 <TableCell className="align-baseline font-medium text-center text-[13px] md:text-base -tracking-[0.02em]">
                   {equipment.name}
@@ -83,7 +84,7 @@ export default function EquipmentList() {
 
           {/* Desktop */}
           <TableBody className="hidden mlg:table-row-group">
-            {equipmentList.map((equipment, index) => (
+            {data.map((equipment, index) => (
               <TableRow key={index}>
                 <TableCell className="align-baseline font-medium text-center text-[13px] md:text-base -tracking-[0.02em]">
                   {equipment.name}
@@ -107,15 +108,17 @@ export default function EquipmentList() {
           </TableBody>
         </Table>
 
-        <div className="flex justify-center md:hidden mt-6 w-full">
-          <Button
-            onClick={handleShowMore}
-            className="group relative overflow-hidden"
-          >
-            {equipmentListTranslations.buttonText}
-            <ArrowRight />
-          </Button>
-        </div>
+        {visibleItems !== data.length && (
+          <div className="flex justify-center md:hidden mt-6 w-full">
+            <Button
+              onClick={handleShowMore}
+              className="group relative overflow-hidden"
+            >
+              {equipmentListTranslations.buttonText}
+              <ArrowRight />
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

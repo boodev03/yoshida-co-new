@@ -25,7 +25,7 @@ export default function Design() {
         ]}
       />
 
-      <div className="py-[60px] md:py-[120px]">
+      <div className="pt-[60px] md:pt-[120px]">
         <div className="container mx-auto">
           <CorporateHeading
             sectionName={overview.sectionName}
@@ -66,8 +66,8 @@ export default function Design() {
           />
         </div>
 
-        <div className="bg-web-light-bg">
-          <div className="container mx-auto mt-20 mlg:mt-[200px] py-12 mlg:py-[120px] space-y-12 mlg:space-y-20">
+        <div className="bg-web-light-bg pb-[60px] mlg:pb-[390px]">
+          <div className="container mx-auto mt-20 mlg:mt-[200px] py-12 space-y-12 mlg:space-y-20">
             <div className="w-full space-y-2 flex flex-col items-center">
               <div className="relative">
                 <div

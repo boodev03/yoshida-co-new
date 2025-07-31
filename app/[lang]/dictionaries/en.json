@@ -118,7 +118,7 @@
     },
     "message": {
       "title": "MESSAGE",
-      "heading": "CEO Message",
+      "heading": "Greetings from the Representative Director",
       "content": "At Yoshida, we’re always looking for new challenges and ways to grow.\nSince our founding in 1923, we’ve built over 100 years of experience and history. In 1961, we became the first company in Japan to design and manufacture gloveboxes, marking our entry into the nuclear industry.\n\nOur strength lies in our in-house integrated production system, where design, fabrication/welding, and machining departments work closely together. This allows us to create products that fully meet our customers’ needs.\n\nIn recent years, we have been actively engaged in research and development, collaborating with universities, research institutions, and venture companies on a variety of projects. These include the development of next-generation gloveboxes with remote operation capabilities and the verification of separation methods for organic solvents used at the Fukushima Daiichi Nuclear Power Plant. We are also exploring new ways to apply our proprietary technologies, such as adapting the shielding and containment techniques developed during the Fukushima decommissioning work for use in fields like medicine and aerospace.\n\nWe strive to be the company our customers turn to when they face challenges, and we will continue to build a system that enables us to fully realize their requirements.\n\nThank you for your continued support.",
       "ceo": "Representative Director",
       "ceoName": "Shusuke Yonekawa"
@@ -178,7 +178,7 @@
         {
           "year": 1959,
           "detail": "April",
-          "content": "The company changed to a corporate structure and was established as Yoshida Ironworks Co., Ltd., with Ken Yoshida appointed as President."
+          "content": "The company changed to a corporate structure and was established as Yoshida Ironworks Inc., Ltd., with Ken Yoshida appointed as President."
         },
         {
           "year": 1961,
@@ -213,7 +213,7 @@
         {
           "year": 1992,
           "detail": "February",
-          "content": "The company reorganized as a corporation and established as Yoshida Co., Ltd."
+          "content": "The company reorganized as a corporation and established as Yoshida Inc., Ltd."
         },
         {
           "year": 1993,
@@ -556,7 +556,7 @@
       "coverage": {
         "sectionName": "SCOPE OF COVERAGE",
         "title": "Range of Services",
-        "description": "Utilizing our 30-ton crane-equipped facility and machining capabilities, we handle large workpieces, welded parts, and difficult-to-machine materials. We also offer flexible support for high-precision, fast-turnaround products. Don’t hesitate to reach out, we’re happy to help!",
+        "description": "Utilizing our 30-ton crane-equipped facility and machining capabilities, we handle large workpieces, welded parts, and difficult-to-machine materials. We also offer flexible support for high-precision, fast-turnaround products. Don’t hesitate to reach out, we’re happy to help.",
         "cards": [
           {
             "title": "Heavy-duty machining",
@@ -958,7 +958,7 @@
       "subtitle": "We introduce our employees' career paths and Yoshida's work environment.",
       "mobileSubtitle": "We introduce our employees' career paths and Yoshida's work environment.",
       "careerPath": "Career Path",
-      "workEnvironment": "Work Environment"
+      "workEnvironment": "Workplace Environment"
     },
     "navbar": {
       "items": [
@@ -1346,7 +1346,7 @@
         "label": "Attachment",
         "addFile": "Add file",
         "dropFile": "or drop file",
-        "sizeLimit": "File limit is 1MB per file.",
+        "sizeLimit": "File limit is 20MB per file.",
         "sizeError": "File size exceeds 1MB."
       },
       "message": {
@@ -1457,7 +1457,7 @@
         "label": "Attachment",
         "addFile": "Add file",
         "dropFile": "or drop file",
-        "sizeLimit": "File limit is 1MB per file.",
+        "sizeLimit": "File limit is 20MB per file.",
         "sizeError": "File size exceeds 1MB."
       },
       "privacy": {

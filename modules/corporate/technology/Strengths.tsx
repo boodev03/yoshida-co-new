@@ -38,7 +38,7 @@ export default function Strengths() {
   };
   return (
     <motion.div
-      className="bg-web-light-bg pt-12 pb-[60px] mlg:py-[120px] mlg:mt-[200px]"
+      className="bg-web-light-bg pt-12 pb-[60px] mlg:py-[120px] mt-[100px] mlg:mt-[200px]"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -80,7 +80,7 @@ export default function Strengths() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
-            各部門の強み
+            {departmentStrengths.heading}
           </motion.p>
         </motion.div>
 
@@ -131,6 +131,7 @@ export default function Strengths() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: 0.8 }}
+                className="flex justify-center mlg:block"
               >
                 <Button className="group relative overflow-hidden">
                   <Link
@@ -186,7 +187,7 @@ export default function Strengths() {
               </motion.p>
 
               <motion.div
-                className="flex items-center gap-8"
+                className="flex flex-col mlg:flex-row items-center gap-8"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}

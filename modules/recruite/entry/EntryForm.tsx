@@ -16,13 +16,14 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import ConfirmStep from "./ConfirmStep";
 import { useTranslations } from "@/providers/translation-provider";
 import { useScroll, useTransform, motion } from "framer-motion";
+import Image from "next/image";
 
 const LabelCondition = ({ require }: { require?: boolean }) => {
   const { dict } = useTranslations();
@@ -60,16 +61,22 @@ export default function EntryForm() {
     setIsInView(false);
   };
 
-  const yFloat = useTransform(scrollY, (value) => {
+  const yFloat1 = useTransform(scrollY, (value) => {
     if (!isInView) return 0;
     const scrollDelta = value - startScrollY;
-    return -scrollDelta * 0.2;
+    return -scrollDelta * 0.15;
   });
 
-  const xFloat = useTransform(scrollY, (value) => {
+  const xFloat2 = useTransform(scrollY, (value) => {
     if (!isInView) return 0;
     const scrollDelta = value - startScrollY;
-    return Math.sin(scrollDelta * 0.005) * 15;
+    return Math.sin(scrollDelta * 0.004) * 20;
+  });
+
+  const scaleFloat2 = useTransform(scrollY, (value) => {
+    if (!isInView) return 1;
+    const scrollDelta = value - startScrollY;
+    return 1 + Math.sin(scrollDelta * 0.006) * 0.05;
   });
   // Create dynamic form schema based on translations
   const formSchema = z.object({
@@ -106,7 +113,7 @@ export default function EntryForm() {
         required_error: entryForm.fields.phone.required,
       })
       .min(1, entryForm.fields.phone.required)
-      .regex(/^\d{2,4}-\d{2,4}-\d{4}$/, entryForm.fields.phone.invalid),
+      .regex(/^0\d{9,10}$/, entryForm.fields.phone.invalid),
 
     message: z.string().optional(),
 
@@ -213,31 +220,39 @@ export default function EntryForm() {
     }
   };
 
-  const onPhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Remove all hyphens
-    let value = e.target.value.replace(/-/g, "");
+  const [phoneDisplay, setPhoneDisplay] = useState("");
 
-    // Remove all non-digit characters
-    value = value.replace(/[^\d]/g, "");
-
-    // Format according to Japanese phone number format
-    if (value.length > 0) {
-      // Format: XXX-XXXX-XXXX
-      if (value.length <= 3) {
-        // Only show first 3 digits
-      } else if (value.length <= 7) {
-        // Format: XXX-XXXX
-        value = `${value.slice(0, 3)}-${value.slice(3)}`;
-      } else {
-        // Full format: XXX-XXXX-XXXX
-        value = `${value.slice(0, 3)}-${value.slice(3, 7)}-${value.slice(
-          7,
-          11
-        )}`;
-      }
+  // Initialize phoneDisplay when form values change
+  useEffect(() => {
+    const currentPhone = form.getValues("phone");
+    if (currentPhone && !phoneDisplay) {
+      setPhoneDisplay(formatPhoneForDisplay(currentPhone));
     }
+  }, [form, phoneDisplay]);
 
-    return value;
+  const formatPhoneForDisplay = (digits: string) => {
+    if (digits.length <= 3) {
+      return digits;
+    } else if (digits.length <= 7) {
+      return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    } else {
+      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
+    }
+  };
+
+  const onPhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Remove all non-digit characters to get clean digits
+    const digits = e.target.value.replace(/[^\d]/g, "");
+    
+    // Limit to 11 digits max
+    const limitedDigits = digits.slice(0, 11);
+    
+    // Format for display
+    const formattedDisplay = formatPhoneForDisplay(limitedDigits);
+    setPhoneDisplay(formattedDisplay);
+    
+    // Store normalized digits only
+    return limitedDigits;
   };
 
   return (
@@ -246,96 +261,60 @@ export default function EntryForm() {
       onViewportLeave={handleViewportLeave}
       className="relative pt-[82px] mlg:pt-[90px] font-gothic"
     >
-      {/* First triangle with conditional movement and fine grainy effect */}
-      <motion.div
-        initial={{ opacity: 0, rotate: -20 }}
-        whileInView={{ opacity: 1, rotate: -30 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, delay: 0.3 }}
-        style={{
-          x: xFloat,
-          y: yFloat,
-          clipPath: "polygon(0% 0%, 100% 50%, 0% 100%)",
-          filter: "url(#fineGrainy)",
-        }}
-        className="size-[200px] md:size-[800px] absolute rotate-[30deg] xl:rotate-[45deg] bg-web-light-bg bottom-0 translate-y-1/2 md:bottom-0 md:top-[unset] left-0 t-ranslate-x-1/3 -z-[1]"
-      >
-        <svg width="0" height="0">
-          <filter id="fineGrainy">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.8"
-              numOctaves="2"
-              stitchTiles="stitch"
-            />
-            <feComponentTransfer>
-              <feFuncA type="linear" slope="0.3" intercept="0.35" />
-            </feComponentTransfer>
-            <feBlend mode="soft-light" in="SourceGraphic" />
-          </filter>
-        </svg>
-      </motion.div>
-
-      {/* Second triangle with conditional movement and fine grainy effect */}
+      {/* First triangle - TOP LEFT */}
       <motion.div
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 1, delay: 0.2 }}
         style={{
-          x: xFloat,
-          y: yFloat,
-          rotate: -45,
-          clipPath: "polygon(0% 0%, 100% 50%, 0% 100%)",
-          filter: "url(#fineGrainy)",
+          x: xFloat2,
+          scale: scaleFloat2,
         }}
-        className="size-[300px] xl:size-[800px] rotate-[10deg] absolute bg-web-light-bg top-1/4 xl:top-0 -translate-x-1/3 xl:translate-x-1/2 left-0 -z-[1]"
+        className="w-[300px] h-[260px] sm:w-[500px] sm:h-[435px] md:w-[1200px] md:!h-[1051px] absolute top-0 left-0 -translate-x-1/3 sm:-translate-x-1/2 md:-translate-x-1/2 -z-[1] -rotate-[110deg]"
       >
-        <svg width="0" height="0">
-          <filter id="fineGrainy">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.8"
-              numOctaves="2"
-              stitchTiles="stitch"
-            />
-            <feComponentTransfer>
-              <feFuncA type="linear" slope="0.3" intercept="0.35" />
-            </feComponentTransfer>
-            <feBlend mode="soft-light" in="SourceGraphic" />
-          </filter>
-        </svg>
+        <Image
+          src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+          alt="Triangle decoration"
+          fill
+        />
       </motion.div>
 
-      {/* Third triangle with conditional movement and fine grainy effect */}
+      {/* Second triangle - CENTER RIGHT */}
       <motion.div
         initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1, delay: 0.2 }}
+        transition={{ duration: 1, delay: 0.4 }}
         style={{
-          x: xFloat,
-          y: yFloat,
-          rotate: -80,
-          clipPath: "polygon(0% 0%, 100% 50%, 0% 100%)",
-          filter: "url(#fineGrainy)",
+          x: xFloat2,
+          scale: scaleFloat2,
         }}
-        className="size-[300px] xl:size-[1200px] rotate-45 bg-web-light-bg absolute top-[94px] xl:top-1/2 translate-x-1/3 xl:translate-x-1/3 xl:-translate-y-1/2 right-0 -z-[2]"
+        className="w-[400px] h-[350px] sm:w-[600px] sm:h-[525px] md:w-[1600px] md:!h-[1390px] absolute top-1/2 -translate-y-1/2 right-0 translate-x-1/3 sm:translate-x-1/2 md:translate-x-1/2 -z-[1] -rotate-[110deg]"
       >
-        <svg width="0" height="0">
-          <filter id="fineGrainy">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.8"
-              numOctaves="2"
-              stitchTiles="stitch"
-            />
-            <feComponentTransfer>
-              <feFuncA type="linear" slope="0.3" intercept="0.35" />
-            </feComponentTransfer>
-            <feBlend mode="soft-light" in="SourceGraphic" />
-          </filter>
-        </svg>
+        <Image
+          src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+          alt="Triangle decoration"
+          fill
+        />
+      </motion.div>
+
+      {/* Third triangle - BOTTOM LEFT */}
+      <motion.div
+        initial={{ opacity: 0, rotate: -20 }}
+        whileInView={{ opacity: 1, rotate: -30 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, delay: 0.3 }}
+        style={{
+          y: yFloat1,
+        }}
+        className="size-[120px] sm:size-[200px] md:size-[500px] absolute bottom-0 left-0 -translate-x-2/3 sm:-translate-x-full md:-translate-x-full -z-[1] rotate-[60deg]"
+      >
+        <Image
+          src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/triangle.png"
+          alt="Triangle decoration"
+          fill
+        />
       </motion.div>
       {/* Content */}
       <div
@@ -507,14 +486,14 @@ export default function EntryForm() {
                       <div className="flex-1 flex flex-col gap-2">
                         <FormControl>
                           <Input
-                            placeholder={entryForm.fields.phone.placeholder}
-                            {...field}
-                            value={field.value}
+                            type="tel"
+                            inputMode="numeric"
+                            placeholder="0312345678"
+                            value={phoneDisplay || formatPhoneForDisplay(field.value)}
                             onChange={(e) => {
-                              const value = onPhoneNumberChange(e);
-                              field.onChange(value);
+                              const normalizedValue = onPhoneNumberChange(e);
+                              field.onChange(normalizedValue);
                             }}
-                            maxLength={13}
                           />
                         </FormControl>
                         <FormMessage className="text-sm" />
@@ -534,8 +513,11 @@ export default function EntryForm() {
                     <Dropzone
                       onDrop={(acceptedFiles) => {
                         const file = acceptedFiles[0];
-                        if (file && file.size > 1024 * 1024) {
-                          const sizeMB = (file.size / (1024 * 1024)).toFixed(1);
+                        if (file && file.size > 1024 * 1024 * 20) {
+                          const sizeMB = (
+                            file.size /
+                            (1024 * 1024 * 20)
+                          ).toFixed(1);
                           setFileError(
                             `${entryForm.fields.attachment.sizeError.replace(
                               "1MB",
@@ -558,7 +540,7 @@ export default function EntryForm() {
                         setFileError(entryForm.fields.attachment.sizeError);
                         setUploadedFile(null);
                       }}
-                      maxSize={1024 * 1024}
+                      maxSize={1024 * 1024 * 20}
                     >
                       {({ getRootProps, getInputProps }) => (
                         <section className="border border-dashed border-line-gray rounded-[3px] flex justify-center items-center h-[120px]">
@@ -566,7 +548,7 @@ export default function EntryForm() {
                             <input {...getInputProps()} />
                             <p className="text-normal text-[13px] md:text-[14px] text-line-gray">
                               <span className="text-web-vivid cursor-pointer">
-                                {entryForm.fields.attachment.addFile}
+                                {entryForm.fields.attachment.addFile}{" "}
                               </span>
                               {entryForm.fields.attachment.dropFile}
                             </p>

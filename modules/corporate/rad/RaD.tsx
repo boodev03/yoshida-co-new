@@ -22,7 +22,7 @@ export default function RaD() {
         ]}
       />
 
-      <div className="py-[60px] md:py-[120px] mb-[60px] md:mb-[120px]">
+      <div className="pt-[60px] md:pt-[120px] mb-[60px] md:mb-[120px] pb-[60px] mlg:pb-[390px]">
         <div className="container mx-auto mb-8 mlg:mb-0">
           <p className="text-web-dark text-[13px] md:text-base text-center -tracking-[0.02em] mb-12 whitespace-pre-line">
             {overview.description}

@@ -4,12 +4,37 @@ import { motion } from "framer-motion";
 import AnimatedHeading from "./AnimatedHeading";
 import Image from "next/image";
 import { useTranslations } from "@/providers/translation-provider";
+import { cn } from "@/lib/utils";
 
 export default function Message() {
   const { company } = useTranslations();
   return (
-    <section className="px-6 mlg:px-0">
-      <div>
+    <section className="relative px-6 mlg:px-0">
+      <div
+        className={cn(
+          "w-full max-w-[1048px] shrink-0 aspect-video bg-web-light-bg overflow-hidden",
+          "absolute top-full -translate-y-12 md:top-1/2 -right-[20%] md:-right-[5%]"
+        )}
+        style={{
+          clipPath: "polygon(0% 0%, 75% 0%, 100% 100%, 25% 100%)",
+        }}
+      >
+        <Image
+          src="/images/company/ceo-message.png"
+          alt="Headquarters"
+          fill
+          className="object-cover"
+        />
+        {/* Overlay: linear gradient from top left to bottom */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.0) 100%)",
+          }}
+        />
+      </div>
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -36,7 +61,7 @@ export default function Message() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="w-full mlg:w-[420px] mt-4"
+            className="w-full mt-4"
           >
             <p className="text-web-dark text-jp-h1">
               {company.message.heading}
@@ -53,7 +78,7 @@ export default function Message() {
             {/* Outlined text */}
             <AnimatedHeading />
             <div className="relative flex items-start flex-col mlg:flex-row">
-              <div className="max-w-full mlg:max-w-[640px] shrink-0 space-y-12">
+              <div className="max-w-full mlg:max-w-[640px] shrink-0 space-y-4 md:space-y-12">
                 <p className="text-[15px] mlg:text-base relative z-10 text-web-dark font-medium tracking-[-0.02em] whitespace-pre-line">
                   {company.message.content}
                 </p>
@@ -66,28 +91,6 @@ export default function Message() {
                     {company.message.ceoName}
                   </p>
                 </div>
-              </div>
-
-              <div
-                className="w-full shrink-0 aspect-video bg-web-light-bg relative -right-[20%] mlg:right-[12%] -mt-8 mlg:mt-[120px] overflow-hidden"
-                style={{
-                  clipPath: "polygon(0% 0%, 75% 0%, 100% 100%, 25% 100%)",
-                }}
-              >
-                <Image
-                  src="/images/company/ceo-message.png"
-                  alt="Headquarters"
-                  fill
-                  className="object-cover"
-                />
-                {/* Overlay: linear gradient from top left to bottom */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.0) 100%)",
-                  }}
-                />
               </div>
             </div>
           </div>

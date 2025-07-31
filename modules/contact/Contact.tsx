@@ -22,7 +22,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -71,7 +71,7 @@ export default function Contact() {
         required_error: contact.fields.phone.required,
       })
       .min(1, contact.fields.phone.required)
-      .regex(/^\d{2,4}-\d{2,4}-\d{4}$/, contact.fields.phone.invalid),
+      .regex(/^0\d{9,10}$/, contact.fields.phone.invalid),
 
     email: z
       .string({
@@ -188,35 +188,43 @@ export default function Contact() {
     }
   };
 
-  const onPhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Remove all hyphens
-    let value = e.target.value.replace(/-/g, "");
+  const [phoneDisplay, setPhoneDisplay] = useState("");
 
-    // Remove all non-digit characters
-    value = value.replace(/[^\d]/g, "");
-
-    // Format according to Japanese phone number format
-    if (value.length > 0) {
-      // Format: XXX-XXXX-XXXX
-      if (value.length <= 3) {
-        // Only show first 3 digits
-      } else if (value.length <= 7) {
-        // Format: XXX-XXXX
-        value = `${value.slice(0, 3)}-${value.slice(3)}`;
-      } else {
-        // Full format: XXX-XXXX-XXXX
-        value = `${value.slice(0, 3)}-${value.slice(3, 7)}-${value.slice(
-          7,
-          11
-        )}`;
-      }
+  // Initialize phoneDisplay when form values change
+  useEffect(() => {
+    const currentPhone = form.getValues("phone");
+    if (currentPhone && !phoneDisplay) {
+      setPhoneDisplay(formatPhoneForDisplay(currentPhone));
     }
+  }, [form, phoneDisplay]);
 
-    return value;
+  const formatPhoneForDisplay = (digits: string) => {
+    if (digits.length <= 3) {
+      return digits;
+    } else if (digits.length <= 7) {
+      return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    } else {
+      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
+    }
+  };
+
+  const onPhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Remove all non-digit characters to get clean digits
+    const digits = e.target.value.replace(/[^\d]/g, "");
+    
+    // Limit to 11 digits max
+    const limitedDigits = digits.slice(0, 11);
+    
+    // Format for display
+    const formattedDisplay = formatPhoneForDisplay(limitedDigits);
+    setPhoneDisplay(formattedDisplay);
+    
+    // Store normalized digits only
+    return limitedDigits;
   };
 
   return (
-    <section className="py-[82px] mlg:py-[90px]">
+    <section className="py-[82px] mlg:py-[90px] pb-[60px] mlg:pb-[390px]">
       {/* Decor */}
       <HeadingSite
         title={contact.heading.title}
@@ -346,14 +354,14 @@ export default function Contact() {
                     <div className="flex-1 flex flex-col gap-2">
                       <FormControl>
                         <Input
-                          placeholder={contact.fields.phone.placeholder}
-                          {...field}
-                          value={field.value}
+                          type="tel"
+                          inputMode="numeric"
+                          placeholder="0312345678"
+                          value={phoneDisplay || formatPhoneForDisplay(field.value)}
                           onChange={(e) => {
-                            const value = onPhoneNumberChange(e);
-                            field.onChange(value);
+                            const normalizedValue = onPhoneNumberChange(e);
+                            field.onChange(normalizedValue);
                           }}
-                          maxLength={13}
                         />
                       </FormControl>
                       <FormMessage className="text-sm" />
@@ -417,11 +425,13 @@ export default function Contact() {
                   <Dropzone
                     onDrop={(acceptedFiles) => {
                       const file = acceptedFiles[0];
-                      if (file && file.size > 1024 * 1024) {
-                        const sizeMB = (file.size / (1024 * 1024)).toFixed(1);
+                      if (file && file.size > 1024 * 1024 * 20) {
+                        const sizeMB = (file.size / (1024 * 1024 * 20)).toFixed(
+                          1
+                        );
                         setFileError(
                           `${contact.fields.attachment.sizeError.replace(
-                            "1MB",
+                            "20MB",
                             sizeMB + "MB"
                           )}`
                         );
@@ -441,7 +451,7 @@ export default function Contact() {
                       setFileError(contact.fields.attachment.sizeError);
                       setUploadedFile(null);
                     }}
-                    maxSize={1024 * 1024}
+                    maxSize={1024 * 1024 * 20}
                   >
                     {({ getRootProps, getInputProps }) => (
                       <section className="border border-dashed border-line-gray rounded-[3px] flex justify-center items-center h-[120px]">
@@ -449,7 +459,7 @@ export default function Contact() {
                           <input {...getInputProps()} />
                           <p className="text-normal text-[13px] md:text-[14px] text-line-gray">
                             <span className="text-web-vivid cursor-pointer">
-                              {contact.fields.attachment.addFile}
+                              {contact.fields.attachment.addFile}{" "}
                             </span>
                             {contact.fields.attachment.dropFile}
                           </p>

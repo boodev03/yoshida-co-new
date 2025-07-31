@@ -24,7 +24,7 @@ export default function FactoryAndQuality() {
         ]}
       />
 
-      <div className="py-[60px] md:py-[120px]">
+      <div className="py-[60px] md:py-[120px] pb-[60px] mlg:pb-[390px]">
         <div className="hidden md:block space-y-[200px] mt-20 mlg:mt-[120px]">
           <ContentSection
             title={equipment.title}

@@ -11,7 +11,12 @@ export default function Relation() {
 
   return (
     <section className="flex flex-col md:flex-row font-shippori-mincho">
-      <div className="flex-1 aspect-video relative group overflow-hidden">
+      <Link
+        href="/recruit/requirement"
+        className="flex-1 aspect-video relative group overflow-hidden block"
+        tabIndex={-1}
+        aria-label={relation.jobRequirements}
+      >
         <Image
           src="/images/recruit/footer-1.png"
           alt="relation"
@@ -21,14 +26,20 @@ export default function Relation() {
         <div className="absolute inset-0 bg-web-main/50"></div>
         <div className="absolute inset-0 flex justify-center items-center">
           <Button
-            asChild
-            className="text-xl mlg:text-[36px] size-auto mlg:h-[60px] mlg:min-w-[284px] leading-[15px] rounded-[3px]"
+            tabIndex={0}
+            className="text-xl mlg:text-[36px] size-auto mlg:h-[60px] mlg:min-w-[284px] leading-[15px] rounded-[3px] pointer-events-none"
+            aria-hidden="true"
           >
-            <Link href="/recruit/requirement">{relation.jobRequirements}</Link>
+            {relation.jobRequirements}
           </Button>
         </div>
-      </div>
-      <div className="flex-1 aspect-video relative group overflow-hidden">
+      </Link>
+      <Link
+        href="/recruit/entry"
+        className="flex-1 aspect-video relative group overflow-hidden block"
+        tabIndex={-1}
+        aria-label={relation.entry}
+      >
         <Image
           src="/images/recruit/footer-2.png"
           alt="relation"
@@ -38,13 +49,14 @@ export default function Relation() {
         <div className="absolute inset-0 bg-web-main/50"></div>
         <div className="absolute inset-0 flex justify-center items-center">
           <Button
-            asChild
-            className="text-xl mlg:text-[36px] size-auto mlg:h-[60px] mlg:min-w-[284px] leading-[15px] rounded-[3px]"
+            tabIndex={0}
+            className="text-xl mlg:text-[36px] size-auto mlg:h-[60px] mlg:min-w-[284px] leading-[15px] rounded-[3px] pointer-events-none"
+            aria-hidden="true"
           >
-            <Link href="/recruit/entry">{relation.entry}</Link>
+            {relation.entry}
           </Button>
         </div>
-      </div>
+      </Link>
     </section>
   );
 }

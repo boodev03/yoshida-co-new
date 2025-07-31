@@ -6,7 +6,7 @@ export default function Inpsection() {
   const { quality } = useTranslations();
   const { inspection } = quality;
   return (
-    <div className="bg-web-light-bg py-[60px] md:py-20">
+    <div className="bg-web-light-bg pt-[60px] md:pt-20">
       <div className="container mx-auto space-y-12 md:space-y-20">
         <div className="w-full space-y-2 flex flex-col items-center">
           <div>
