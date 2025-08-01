@@ -20,37 +20,37 @@ export default function HeadingSite({
 }: HeadingSiteProps) {
   return (
     <div className="relative mt-10 flex">
+      <p className="absolute bottom-10 left-[10%] z-50 w-max flex flex-col text-white flex-1">
+        <motion.span
+          className="section-title text-[13px] md:text-[16px] whitespace-nowrap"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          {title}
+        </motion.span>
+        <motion.span
+          className="block text-jp-h1 text-[20px] md:text-[36px] whitespace-nowrap"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+        >
+          {subtitle}
+        </motion.span>
+      </p>
       <motion.div
         style={{
-          clipPath: "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
+          clipPath: "polygon(13.4% 0%, 100% 0%, 86.6% 100%, 0% 100%)",
+          aspectRatio: "1.7",
         }}
-        className="bg-web-main aspect-video w-3/4 md:w-2/3 mlg:w-1/2 absolute bottom-0 mlg:top-[10%] left-0 -translate-x-[15%] mlg:-translate-x-[5%] z-10 flex items-center md:items-end md:pb-10 mlg:pb-20 justify-center pl-[20%] sm:pl-[10%]"
+        className="bg-web-main h-full max-w-1/2 absolute bottom-0 mlg:top-[10%] -left-[5%] mlg:-left-[2%] z-10 md:items-end md:pb-10 mlg:pb-20"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.7, delay: 0.2 }}
-      >
-        <p className="flex flex-col text-white flex-1 max-w-[75%] xl:max-w-[50%]">
-          <motion.span
-            className="section-title text-[13px] md:text-[16px]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {title}
-          </motion.span>
-          <motion.span
-            className="block text-jp-h1 text-[20px] md:text-[36px] whitespace-pre-line break-words"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-          >
-            {subtitle}
-          </motion.span>
-        </p>
-      </motion.div>
+      ></motion.div>
       <div className="flex-1 flex flex-col items-end aspect-video md:aspect-auto">
         <motion.div
           className="relative aspect-video w-[68.88889%]"

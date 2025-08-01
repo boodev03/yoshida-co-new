@@ -19,7 +19,10 @@ export default function EquipmentList() {
   const { equipment, locale } = useTranslations();
   const { equipmentList: equipmentListTranslations } = equipment;
   const [visibleItems, setVisibleItems] = useState(10);
-  const data = locale === "en" ? equipmentListEnglish : equipmentListJP;
+  // For now, use static data since equipment has different structure than posts
+  // TODO: Create separate equipment table or adapt equipment data to post structure
+  const staticData = locale === "en" ? equipmentListEnglish : equipmentListJP;
+  const data = staticData;
 
   const handleShowMore = () => {
     if (visibleItems < data.length) {

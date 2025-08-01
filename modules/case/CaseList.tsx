@@ -9,12 +9,13 @@ import { useTranslations } from "@/providers/translation-provider";
 const ITEMS_PER_PAGE = 9; // Show 9 items per page (3x3 grid)
 
 export default function CaseList() {
-  const { case: caseTranslations } = useTranslations();
+  const { case: caseTranslations, locale } = useTranslations();
   const [currentPage, setCurrentPage] = useState(1);
   const [estimatedTotalPages, setEstimatedTotalPages] = useState(1);
   const { data, isLoading, error } = useGetCasesWithPagePagination(
     currentPage,
-    ITEMS_PER_PAGE
+    ITEMS_PER_PAGE,
+    locale
   );
 
   // Update estimated total pages based on current data
@@ -66,9 +67,9 @@ export default function CaseList() {
     title: caseItem.title,
     shortDesc: caseItem.cardDescription,
     date: caseItem.createdAt
-      ? new Date(caseItem.createdAt).toLocaleDateString("ja-JP")
+      ? new Date(caseItem.createdAt).toLocaleDateString(locale === "ja" ? "ja-JP" : "en-US")
       : "",
-    href: `/case/${caseItem.id}`,
+    href: `/${locale}/case/${caseItem.id}`,
   }));
 
   return (

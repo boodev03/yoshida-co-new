@@ -122,9 +122,11 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
             item.children ? (
               <Accordion type="single" collapsible key={item.label}>
                 <AccordionItem value="item-1">
-                  <AccordionTrigger className="text-white text-sm font-bold tracking-[-0.015em] py-0">
-                    {item.label}
-                  </AccordionTrigger>
+                  <Link href={item.href}>
+                    <AccordionTrigger className="text-white text-sm font-bold tracking-[-0.015em] py-0">
+                      {item.label}
+                    </AccordionTrigger>
+                  </Link>
                   <AccordionContent className="space-y-4 px-4 text-white pt-4">
                     {item.children.map((child) => (
                       <Link

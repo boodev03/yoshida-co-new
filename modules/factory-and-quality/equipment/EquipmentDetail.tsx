@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useGetNewsById } from "@/hooks/useGetNews";
+import { useGetEquipmentById } from "@/hooks/useGetEquipments";
 import { ContentSection } from "@/hooks/useGetCases";
 import {
   CaseHeader,
@@ -11,18 +11,18 @@ import {
   VideoContent,
   RichTextContent,
   CaseNavigation,
-} from "../case/components";
-import LinkContent from "../case/components/LinkContent";
+} from "../../case/components";
+import LinkContent from "../../case/components/LinkContent";
 import { useTranslations } from "@/providers/translation-provider";
 
-interface BlogDetailProps {
-  blogId: string;
+interface EquipmentDetailProps {
+  equipmentId: string;
 }
 
-export default function BlogDetail({ blogId }: BlogDetailProps) {
-  const { news: newsTranslations, locale } = useTranslations();
+export default function EquipmentDetail({ equipmentId }: EquipmentDetailProps) {
+  const { equipment: equipmentTranslations, locale } = useTranslations();
   const router = useRouter();
-  const { data: newsData, isLoading, error } = useGetNewsById(blogId, locale);
+  const { data: equipmentData, isLoading, error } = useGetEquipmentById(equipmentId, locale);
 
   const onBack = () => {
     router.back();
@@ -34,19 +34,19 @@ export default function BlogDetail({ blogId }: BlogDetailProps) {
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-web-main mx-auto mb-4"></div>
           <p className="text-jp-p2 text-web-dark">
-            {newsTranslations?.detail?.loading || "Loading..."}
+            {equipmentTranslations?.detail?.loading || "Loading..."}
           </p>
         </div>
       </div>
     );
   }
 
-  if (error || !newsData) {
+  if (error || !equipmentData) {
     return (
       <section className="pt-[82px] mlg:pt-[90px]">
         <div className="container mx-auto flex justify-center items-center min-h-[400px]">
           <p className="text-jp-p2 text-web-dark">
-            {newsTranslations?.detail?.notFound || "News not found"}
+            {equipmentTranslations?.detail?.notFound || "Equipment not found"}
           </p>
         </div>
       </section>
@@ -89,17 +89,17 @@ export default function BlogDetail({ blogId }: BlogDetailProps) {
   };
 
   // Sort sections by order
-  const sortedSections = [...newsData.sections].sort(
+  const sortedSections = [...equipmentData.sections].sort(
     (a, b) => a.order - b.order
   );
 
   return (
     <section className="pt-[82px] mlg:pt-[90px] pb-[60px] mlg:pb-[390px]">
       <CaseHeader
-        title={newsData.title}
-        category={newsData.category.split(",")[0] || "N/A"}
-        date={newsData.date || formatDate(
-          newsData.updatedAt || newsData.createdAt || Date.now()
+        title={equipmentData.title}
+        category={equipmentData.category.split(",")[0] || "N/A"}
+        date={equipmentData.date || formatDate(
+          equipmentData.updatedAt || equipmentData.createdAt || Date.now()
         )}
       />
 

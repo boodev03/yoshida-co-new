@@ -139,12 +139,12 @@ export default function FactorySection() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex justify-center"
         >
-          <Button asChild className="group relative overflow-hidden">
-            <Link href="/factory-and-quality">
+          <Link href="/factory-and-quality" className="w-full block">
+            <Button className="group w-full relative overflow-hidden whitespace-pre-wrap leading-[1.1]">
               {tPath("home.factory.button")}
               <ArrowRight />
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </motion.div>
       </div>
 

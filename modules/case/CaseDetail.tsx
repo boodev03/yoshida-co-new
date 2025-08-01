@@ -20,9 +20,9 @@ interface CaseDetailProps {
 }
 
 export default function CaseDetail({ caseId }: CaseDetailProps) {
-  const { case: caseTranslations } = useTranslations();
+  const { case: caseTranslations, locale } = useTranslations();
   const router = useRouter();
-  const { data: caseData, isLoading, error } = useGetCaseById(caseId);
+  const { data: caseData, isLoading, error } = useGetCaseById(caseId, locale);
 
   const onBack = () => {
     router.back();
@@ -33,7 +33,9 @@ export default function CaseDetail({ caseId }: CaseDetailProps) {
       <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-web-main mx-auto mb-4"></div>
-          <p className="text-jp-p2 text-web-dark">{caseTranslations.detail.loading}</p>
+          <p className="text-jp-p2 text-web-dark">
+            {caseTranslations.detail.loading}
+          </p>
         </div>
       </div>
     );
@@ -51,10 +53,20 @@ export default function CaseDetail({ caseId }: CaseDetailProps) {
     );
   }
 
-  // Format date
+  // Format date based on locale
   const formatDate = (timestamp: number) => {
     const date = new Date(timestamp);
-    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+    if (locale === "ja") {
+      return `${date.getFullYear()}年${
+        date.getMonth() + 1
+      }月${date.getDate()}日`;
+    } else {
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    }
   };
 
   const renderContentSection = (section: ContentSection) => {
@@ -80,15 +92,12 @@ export default function CaseDetail({ caseId }: CaseDetailProps) {
   const sortedSections = [...caseData.sections].sort(
     (a, b) => a.order - b.order
   );
-
   return (
-    <section className="pt-[82px] mlg:pt-[90px]">
+    <section className="pt-[82px] mlg:pt-[90px] pb-[60px] mlg:pb-[390px]">
       <CaseHeader
         title={caseData.title}
-        category={caseData.category}
-        date={formatDate(
-          caseData.updatedAt || caseData.createdAt || Date.now()
-        )}
+        category={caseData.category.split(",")[0] || "N/A"}
+        date={caseData.date}
       />
 
       {/* Render dynamic content sections */}

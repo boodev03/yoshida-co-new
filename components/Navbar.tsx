@@ -6,7 +6,7 @@ import { useTranslations } from "@/providers/translation-provider";
 
 export default function Navbar() {
   const { tPath } = useTranslations();
-  
+
   const navbarItems = [
     {
       label: tPath("navigation.company"),
@@ -73,7 +73,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="flex items-center gap-4 h-full">
+    <nav className="flex items-center h-full">
       {navbarItems.map((item) => (
         <NavbarItem key={item.label} {...item} />
       ))}

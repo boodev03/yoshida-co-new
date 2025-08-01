@@ -63,6 +63,7 @@ export interface Case {
   category: string;
   cardDescription: string;
   thumbnail: string;
+  date: string;
 
   // Flexible Content Sections (ordered)
   sections: ContentSection[];
@@ -87,6 +88,7 @@ export interface Case {
 export const getAllCases = async (options?: {
   pageSize?: number;
   offset?: number;
+  locale?: "en" | "ja";
 }): Promise<{
   cases: Case[];
   hasMore: boolean;
@@ -103,6 +105,7 @@ export const getAllCases = async (options?: {
 export const getCasesWithPagePagination = async (options: {
   page: number;
   pageSize: number;
+  locale?: "en" | "ja";
 }): Promise<{
   cases: Case[];
   hasMore: boolean;
@@ -116,12 +119,13 @@ export const getCasesWithPagePagination = async (options: {
 /**
  * Hook to fetch cases with pagination using TanStack Query
  * @param pageSize Number of cases to fetch per page
+ * @param locale Language code for multilingual support
  * @returns Query result with cases data and pagination info
  */
-export const useGetCases = (pageSize: number = 10) => {
+export const useGetCases = (pageSize: number = 10, locale?: "en" | "ja") => {
   return useQuery({
-    queryKey: ["cases", pageSize],
-    queryFn: () => getAllCases({ pageSize }),
+    queryKey: ["cases", pageSize, locale],
+    queryFn: () => getAllCases({ pageSize, locale }),
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
   });
@@ -131,12 +135,17 @@ export const useGetCases = (pageSize: number = 10) => {
  * Hook to fetch cases with page-based pagination using TanStack Query
  * @param page Current page number (1-based)
  * @param pageSize Number of cases to fetch per page
+ * @param locale Language code for multilingual support
  * @returns Query result with cases data and pagination info
  */
-export const useGetCasesWithPagePagination = (page: number = 1, pageSize: number = 9) => {
+export const useGetCasesWithPagePagination = (
+  page: number = 1,
+  pageSize: number = 9,
+  locale?: "en" | "ja"
+) => {
   return useQuery({
-    queryKey: ["cases-page", page, pageSize],
-    queryFn: () => getCasesWithPagePagination({ page, pageSize }),
+    queryKey: ["cases-page", page, pageSize, locale],
+    queryFn: () => getCasesWithPagePagination({ page, pageSize, locale }),
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
   });
@@ -145,19 +154,20 @@ export const useGetCasesWithPagePagination = (page: number = 1, pageSize: number
 /**
  * Hook to fetch cases with infinite pagination using TanStack Query
  * @param pageSize Number of cases to fetch per page
+ * @param locale Language code for multilingual support
  * @returns Infinite query result with cases data and pagination controls
  */
-export const useGetCasesInfinite = (pageSize: number = 10) => {
+export const useGetCasesInfinite = (
+  pageSize: number = 10,
+  locale?: "en" | "ja"
+) => {
   return useInfiniteQuery({
-    queryKey: ["cases-infinite", pageSize],
-    queryFn: ({
-      pageParam = 0,
-    }: {
-      pageParam?: number;
-    }) =>
+    queryKey: ["cases-infinite", pageSize, locale],
+    queryFn: ({ pageParam = 0 }: { pageParam?: number }) =>
       getAllCases({
         pageSize,
         offset: pageParam,
+        locale,
       }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {

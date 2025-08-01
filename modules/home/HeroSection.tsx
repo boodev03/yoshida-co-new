@@ -57,9 +57,9 @@ export default function HeroSection() {
             muted
             loop
             playsInline
-            className="size-full object-cover object-top hidden md:block"
+            className="size-full aspect-video object-cover object-top hidden md:block scale-110"
             style={{
-              clipPath: "polygon(25% 0%, 110% 0%, 75% 100%, -10% 100%)",
+              clipPath: "polygon(13.4% 0%, 100% 0%, 86.6% 100%, 0% 100%)",
             }}
           />
           <video
@@ -93,9 +93,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="absolute top-0 left-[10%] size-full bg-web-main -z-[1] hidden md:block"
+          className="absolute top-0 left-[10%] aspect-video size-full bg-web-main -z-[1] hidden md:block"
           style={{
-            clipPath: "polygon(25% 0%, 110% 0%, 75% 100%, 0% 100%)",
+            clipPath: "polygon(13.4% 0%, 100% 0%, 86.6% 100%, 0% 100%)",
           }}
         >
           <ScrollDown />

@@ -18,19 +18,19 @@ interface IProps {
 const navbarItems = [
   {
     label: "Top",
-    href: "#",
+    href: "/",
   },
   {
     label: "キャリアパス",
-    href: "#",
+    href: "/recruit/career-path",
   },
   {
     label: "働く環境",
-    href: "#",
+    href: "/recruit/place",
   },
   {
     label: "募集要項",
-    href: "#",
+    href: "/recruit/requirement",
   },
 ];
 

@@ -11,7 +11,7 @@ import { useTranslations } from "@/providers/translation-provider";
 export default function Technology() {
   const { technology } = useTranslations();
   const { heading, overview, strengths } = technology;
-  
+
   return (
     <section className="pt-[82px] mlg:pt-[90px] font-noto-sans">
       <HeadingSite
@@ -19,12 +19,12 @@ export default function Technology() {
         subtitle={heading.subtitle}
         imageUrl="/images/technology/banner.webp"
         breadcrumbs={[
-          { label: heading.breadcrumbs.top }, 
-          { label: heading.breadcrumbs.technology }
+          { label: heading.breadcrumbs.top },
+          { label: heading.breadcrumbs.technology },
         ]}
       />
 
-      <div className="py-[60px] md:py-[120px]">
+      <div className="py-[60px] md:py-[120px] pb-[60px] mlg:pb-[390px]">
         <div className="container mx-auto mb-[60px] mlg:mb-[120px]">
           <CorporateHeading
             sectionName={overview.sectionName}

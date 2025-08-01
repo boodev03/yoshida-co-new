@@ -11,6 +11,7 @@ const API_BASE = '/api';
 export const getAllCases = async (options?: {
   pageSize?: number;
   offset?: number;
+  locale?: "en" | "ja";
 }): Promise<{
   cases: Case[];
   hasMore: boolean;
@@ -25,6 +26,10 @@ export const getAllCases = async (options?: {
     
     if (options?.offset) {
       params.append('offset', options.offset.toString());
+    }
+
+    if (options?.locale) {
+      params.append('locale', options.locale);
     }
 
     const response = await fetch(`${API_BASE}/cases?${params}`);
@@ -46,6 +51,7 @@ export const getAllCases = async (options?: {
 export const getCasesWithPagePagination = async (options: {
   page: number;
   pageSize: number;
+  locale?: "en" | "ja";
 }): Promise<{
   cases: Case[];
   hasMore: boolean;
@@ -54,11 +60,15 @@ export const getCasesWithPagePagination = async (options: {
   total: number;
 }> => {
   try {
-    const { page, pageSize } = options;
+    const { page, pageSize, locale } = options;
     const params = new URLSearchParams({
       page: page.toString(),
       pageSize: pageSize.toString(),
     });
+
+    if (locale) {
+      params.append('locale', locale);
+    }
 
     const response = await fetch(`${API_BASE}/cases?${params}`);
     
@@ -76,9 +86,15 @@ export const getCasesWithPagePagination = async (options: {
 /**
  * Fetches a single case by ID via API route
  */
-export const getCaseById = async (id: string): Promise<Case | null> => {
+export const getCaseById = async (id: string, locale?: "en" | "ja"): Promise<Case | null> => {
   try {
-    const response = await fetch(`${API_BASE}/cases/${id}`);
+    const params = new URLSearchParams();
+    if (locale) {
+      params.append('locale', locale);
+    }
+    
+    const url = `${API_BASE}/cases/${id}${params.toString() ? `?${params}` : ''}`;
+    const response = await fetch(url);
     
     if (response.status === 404) {
       return null;
