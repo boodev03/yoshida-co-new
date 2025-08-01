@@ -45,7 +45,7 @@ export default function HeadingSite({
           clipPath: "polygon(13.4% 0%, 100% 0%, 86.6% 100%, 0% 100%)",
           aspectRatio: "1.7",
         }}
-        className="bg-web-main h-full max-w-1/2 absolute bottom-0 mlg:top-[10%] -left-[5%] mlg:-left-[2%] z-10 md:items-end md:pb-10 mlg:pb-20"
+        className="bg-web-main h-[90%] lg:h-auto max-w-1/2 absolute bottom-0 mlg:top-[10%] -left-[5%] mlg:-left-[2%] z-10"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-50px" }}
