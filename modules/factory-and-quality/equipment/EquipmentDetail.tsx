@@ -22,7 +22,11 @@ interface EquipmentDetailProps {
 export default function EquipmentDetail({ equipmentId }: EquipmentDetailProps) {
   const { equipment: equipmentTranslations, locale } = useTranslations();
   const router = useRouter();
-  const { data: equipmentData, isLoading, error } = useGetEquipmentById(equipmentId, locale);
+  const {
+    data: equipmentData,
+    isLoading,
+    error,
+  } = useGetEquipmentById(equipmentId, locale);
 
   const onBack = () => {
     router.back();
@@ -33,9 +37,7 @@ export default function EquipmentDetail({ equipmentId }: EquipmentDetailProps) {
       <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-web-main mx-auto mb-4"></div>
-          <p className="text-jp-p2 text-web-dark">
-            {equipmentTranslations?.detail?.loading || "Loading..."}
-          </p>
+          <p className="text-jp-p2 text-web-dark">{"Loading..."}</p>
         </div>
       </div>
     );
@@ -45,9 +47,7 @@ export default function EquipmentDetail({ equipmentId }: EquipmentDetailProps) {
     return (
       <section className="pt-[82px] mlg:pt-[90px]">
         <div className="container mx-auto flex justify-center items-center min-h-[400px]">
-          <p className="text-jp-p2 text-web-dark">
-            {equipmentTranslations?.detail?.notFound || "Equipment not found"}
-          </p>
+          <p className="text-jp-p2 text-web-dark">{"Equipment not found"}</p>
         </div>
       </section>
     );
@@ -98,9 +98,12 @@ export default function EquipmentDetail({ equipmentId }: EquipmentDetailProps) {
       <CaseHeader
         title={equipmentData.title}
         category={equipmentData.category.split(",")[0] || "N/A"}
-        date={equipmentData.date || formatDate(
-          equipmentData.updatedAt || equipmentData.createdAt || Date.now()
-        )}
+        date={
+          equipmentData.date ||
+          formatDate(
+            equipmentData.updatedAt || equipmentData.createdAt || Date.now()
+          )
+        }
       />
 
       {/* Render dynamic content sections */}

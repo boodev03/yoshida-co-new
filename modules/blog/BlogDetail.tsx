@@ -33,9 +33,7 @@ export default function BlogDetail({ blogId }: BlogDetailProps) {
       <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-web-main mx-auto mb-4"></div>
-          <p className="text-jp-p2 text-web-dark">
-            {newsTranslations?.detail?.loading || "Loading..."}
-          </p>
+          <p className="text-jp-p2 text-web-dark">Loading...</p>
         </div>
       </div>
     );
@@ -45,9 +43,7 @@ export default function BlogDetail({ blogId }: BlogDetailProps) {
     return (
       <section className="pt-[82px] mlg:pt-[90px]">
         <div className="container mx-auto flex justify-center items-center min-h-[400px]">
-          <p className="text-jp-p2 text-web-dark">
-            {newsTranslations?.detail?.notFound || "News not found"}
-          </p>
+          <p className="text-jp-p2 text-web-dark">News not found</p>
         </div>
       </section>
     );
@@ -98,9 +94,10 @@ export default function BlogDetail({ blogId }: BlogDetailProps) {
       <CaseHeader
         title={newsData.title}
         category={newsData.category.split(",")[0] || "N/A"}
-        date={newsData.date || formatDate(
-          newsData.updatedAt || newsData.createdAt || Date.now()
-        )}
+        date={
+          newsData.date ||
+          formatDate(newsData.updatedAt || newsData.createdAt || Date.now())
+        }
       />
 
       {/* Render dynamic content sections */}
