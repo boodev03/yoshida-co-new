@@ -212,25 +212,6 @@ export default function WorkEnviroment() {
                   "relative text-xl text-white font-shippori-mincho font-bold bg-web-main p-4 w-fit flex flex-col items-center gap-4"
                 )}
               >
-                <p className={cn(locale === "en" && "hidden")}>
-                  {workEnvironment.workEnvironment
-                    .split("")
-                    .map((char, index) => (
-                      <span
-                        style={{
-                          writingMode: "vertical-lr",
-                          WebkitWritingMode: "vertical-lr",
-                          msWritingMode: "vertical-lr",
-                        }}
-                        key={index}
-                      >
-                        {char}{" "}
-                        {index < workEnvironment.workEnvironment.length - 1 && (
-                          <br />
-                        )}
-                      </span>
-                    ))}
-                </p>
                 <p
                   style={{
                     writingMode: "vertical-lr",
@@ -240,6 +221,18 @@ export default function WorkEnviroment() {
                   className={cn(locale === "ja" && "hidden")}
                 >
                   {workEnvironment.workEnvironment}
+                </p>
+                <p className={cn(locale === "en" && "hidden")}>
+                  {workEnvironment.workEnvironment
+                    .split("")
+                    .map((char, index) => (
+                      <span key={index}>
+                        {char}{" "}
+                        {index < workEnvironment.workEnvironment.length - 1 && (
+                          <br />
+                        )}
+                      </span>
+                    ))}
                 </p>
                 <motion.div
                   initial={{ y: -5 }}
