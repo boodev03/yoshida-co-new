@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { useTranslations } from "@/providers/translation-provider";
+import Image from "next/image";
 
 export default function CompanyContent() {
   const { company } = useTranslations();
@@ -39,11 +40,20 @@ export default function CompanyContent() {
               </p>
               <p
                 className={cn(
-                  "text-[15px] md:text-base font-bold text-web-dark tracking-[-0.02em] whitespace-pre-wrap",
+                  "text-[15px] flex items-center relative md:text-base font-bold text-web-dark tracking-[-0.02em] whitespace-pre-wrap",
                   index >= companyInfo.details.length - 2 && "leading-[2]"
                 )}
               >
-                {item.value}
+                {item.value === "soumu@ysd-k.co.jp" ? (
+                  <Image
+                    width={158}
+                    height={16}
+                    alt="email"
+                    src="/images/email.png"
+                  />
+                ) : (
+                  item.value
+                )}
               </p>
             </div>
           ))}

@@ -141,7 +141,7 @@ export default function WorkEnviroment() {
             className="relative flex-1 max-w-[544px] aspect-square object-cover overflow-hidden group"
           >
             <Image
-              src="/images/recruit/21 talk to supervisor.webp  "
+              src="/images/recruit/21 talk to supervisor.webp"
               alt="career"
               fill
               className="transition-transform duration-[0.75s] object-cover ease-in-out group-hover:scale-110"
@@ -197,7 +197,7 @@ export default function WorkEnviroment() {
             className="relative flex-1 max-w-[544px] aspect-square object-cover overflow-hidden group"
           >
             <Image
-              src="/images/recruit/22 having an exciting meeting.webp  "
+              src="/images/recruit/22 having an exciting meeting.webp"
               alt="career"
               fill
               className="transition-transform duration-[0.75s] object-cover ease-in-out group-hover:scale-110"

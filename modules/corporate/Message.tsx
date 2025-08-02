@@ -20,27 +20,19 @@ export default function Message() {
         }}
       >
         <Image
-          src="/images/company/ceo-message.png"
+          src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/02%20ceo%20message.png"
           alt="Headquarters"
           fill
           className="object-cover"
         />
-        {/* Overlay: linear gradient from top left to bottom */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.0) 100%)",
-          }}
-        />
       </div>
-      <div className="container mx-auto">
+      <div className="">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="basis-full mlg:basis-5/12"
+          className="basis-full mlg:basis-5/12 container mx-auto"
         >
           <motion.h4
             initial={{ opacity: 0 }}
@@ -77,7 +69,7 @@ export default function Message() {
             </div>
             {/* Outlined text */}
             <AnimatedHeading />
-            <div className="relative flex items-start flex-col mlg:flex-row">
+            <div className="relative flex items-start flex-col mlg:flex-row container mx-auto">
               <div className="max-w-full mlg:max-w-[640px] shrink-0 space-y-4 md:space-y-12">
                 <p className="text-[15px] mlg:text-base relative z-10 text-web-dark font-medium tracking-[-0.02em] whitespace-pre-line">
                   {company.message.content}

@@ -97,6 +97,7 @@ export function useTranslations() {
   const news = t("news");
   const recruit = t("recruit");
   const careerPath = t("careerPath");
+  const policy = t("policy");
 
   return {
     dict,
@@ -117,5 +118,6 @@ export function useTranslations() {
     news,
     recruit,
     careerPath,
+    policy,
   };
 }

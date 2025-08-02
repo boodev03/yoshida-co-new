@@ -1404,7 +1404,7 @@
     "stepHeadings": [
       {
         "title": "Contact Form",
-        "description": "To contact us, please fill out the form below.\nYou’ll receive an automatic confirmation email, and a member of our team will follow up with you by email or phone shortly.\nWe handle all inquiries in line with our Privacy Policy and will never share your information without your consent.\n*If you need to send a file larger than 20MB, please email us directly at soumu@ysd-k.co.jp."
+        "description": "To contact us, please fill out the form below.\nYou’ll receive an automatic confirmation email, and a member of our team will follow up with you by email or phone shortly.\nWe handle all inquiries in line with our Privacy Policy and will never share your information without your consent.\n*If you need to send a file larger than 20MB, please email us directly at <img className='w-[158px] h-[16px] ml-[1px] inline' src='/images/email.png' />."
       },
       {
         "title": "Contact Confirmation Screen",
@@ -1503,5 +1503,52 @@
         "optional": "Optional"
       }
     }
+  },
+  "policy": {
+    "title": "Privacy Policy",
+    "subtitle": "Privacy Policy",
+    "breadcrumbs": {
+      "top": "Top",
+      "contact": "Contact"
+    },
+    "sections": [
+      {
+        "heading": "Article 1: Management of Personal Information",
+        "content": "The Company maintains customer personal information accurately and up-to-date, and takes necessary measures—including maintaining security systems, establishing management structures, and thorough employee training—to prevent unauthorized access, loss, damage, falsification, or leakage of personal information. We implement appropriate security controls to strictly manage personal data."
+      },
+      {
+        "heading": "Article 2: Purpose of Use",
+        "content": "Personal information provided by customers will be used for the following purposes:\nTo collect customer feedback and opinions\nTo respond to inquiries and requests for materials\nFor market research and new service development\nTo send email newsletters and publications\nTo provide information about our products and services or those of affiliated companies\nFor recruitment-related information, selection, and surveys\nTo manage and inform about seminars, lectures, exhibitions, and events\nFor other matters incidental or related to our business"
+      },
+      {
+        "heading": "Article 3: Proper Management and Protection",
+        "content": "We strictly manage personal information and take appropriate preventive and corrective actions to protect against unauthorized access, loss, destruction, falsification, or leakage."
+      },
+      {
+        "heading": "Article 4: Disclosure to Third Parties",
+        "content": "The Company will not disclose or provide personal information to third parties except in the following cases:\nWith the prior consent of the individual\nWhen required by law\nWhen there is sufficient reason to believe disclosure is necessary to protect the Company’s rights, property, or services due to violations of service terms\nWhen necessary to protect life, body, or property, and obtaining consent is difficult\nWhen particularly necessary to improve public health or promote sound upbringing of children, and obtaining consent is difficult\nWhen cooperating with national or local government agencies or their agents in performing legal duties, and obtaining consent would interfere with those duties\nIn the event of business succession such as mergers, company splits, or business transfers, including the provision of personal information"
+      },
+      {
+        "heading": "Article 5: Entrustment and Joint Use",
+        "content": "The Company may entrust all or part of the personal information obtained to contractors or share it jointly with related parties within the scope necessary to achieve the intended purpose. We carefully review the suitability of contractors, include confidentiality obligations in contracts, and properly supervise contractors. In cases of joint use, we will disclose in advance the items of personal information shared, the scope of users, the purpose of use, and the person responsible for managing the shared information."
+      },
+      {
+        "heading": "Article 6: Inquiry and Correction Requests",
+        "content": "Requests for confirmation, correction, or deletion of personal information from individuals will be promptly addressed after verifying the requester’s identity."
+      },
+      {
+        "heading": "Article 7: Disclaimer",
+        "content": "The Company is not responsible for any personal information voluntarily disclosed by individuals through use of our services or by other means, or for any identification of individuals through such information. We also disclaim responsibility for information or services provided by third-party websites accessed via links on our site."
+      },
+      {
+        "heading": "Article 9: Compliance and Policy Review",
+        "content": "The Company complies with applicable Japanese laws and standards concerning personal information and regularly reviews and improves this policy as needed."
+      },
+      {
+        "heading": "Article 10: Contact for Privacy Matters",
+        "content": "For inquiries or requests regarding personal information protection, disclosure, correction, or deletion, please contact:\nEmail: soumu@ysd-k.co.jp\n\nYoshida Corporation\n1279-1 Rokutanda-cho, Mito-shi, Ibaraki 311-1135, Japan\nEstablished: April 13, 2025 (Reiwa 7)"
+      }
+    ],
+    "intro": "Yoshida Corporation (Referred to as “the Company” below) recognizes that personal information is an important asset of individuals. We are committed to properly obtaining and using personal information, complying with relevant laws and regulations, and preventing and correcting any leaks or misuse of personal data. To this end, we have established the following privacy policy and manage personal information with utmost care. Please note that this policy does not apply to personal information collected by other businesses or via external links."
   }
 }

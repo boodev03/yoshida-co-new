@@ -43,15 +43,14 @@ export default function HeadingSite({
       <motion.div
         style={{
           clipPath: "polygon(13.4% 0%, 100% 0%, 86.6% 100%, 0% 100%)",
-          aspectRatio: "1.7",
         }}
-        className="bg-web-main h-[90%] lg:h-auto max-w-1/2 absolute bottom-0 mlg:top-[10%] -left-[5%] mlg:-left-[2%] z-10"
+        className="bg-web-main h-auto w-1/2 mlg:max-w-1/2 absolute bottom-0 mlg:top-[10%] -left-[3%] md:-left-[5%] mlg:-left-[2%] z-10 aspect-[1.73]"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.7, delay: 0.2 }}
       ></motion.div>
-      <div className="flex-1 flex flex-col items-end aspect-video md:aspect-auto">
+      <div className="flex-1 flex flex-col items-end pb-[60px] md:aspect-auto">
         <motion.div
           className="relative aspect-video w-[68.88889%]"
           initial={{ opacity: 0, x: 30 }}

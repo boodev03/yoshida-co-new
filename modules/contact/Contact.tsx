@@ -29,6 +29,7 @@ import * as z from "zod";
 import ConfirmStep from "./ConfirmStep";
 import HeadingSite from "@/components/HeadingSite";
 import { useTranslations } from "@/providers/translation-provider";
+import parse from "html-react-parser";
 
 const LabelCondition = ({ require }: { require?: boolean }) => {
   const { dict } = useTranslations();
@@ -204,21 +205,24 @@ export default function Contact() {
     } else if (digits.length <= 7) {
       return `${digits.slice(0, 3)}-${digits.slice(3)}`;
     } else {
-      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
+      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(
+        7,
+        11
+      )}`;
     }
   };
 
   const onPhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Remove all non-digit characters to get clean digits
     const digits = e.target.value.replace(/[^\d]/g, "");
-    
+
     // Limit to 11 digits max
     const limitedDigits = digits.slice(0, 11);
-    
+
     // Format for display
     const formattedDisplay = formatPhoneForDisplay(limitedDigits);
     setPhoneDisplay(formattedDisplay);
-    
+
     // Store normalized digits only
     return limitedDigits;
   };
@@ -246,7 +250,7 @@ export default function Contact() {
             {contact.stepHeadings[step - 1].title}
           </h2>
           <p className="text-jp-p2 text-web-dark text-center whitespace-pre-line">
-            {contact.stepHeadings[step - 1].description}
+            {parse(contact.stepHeadings[step - 1].description)}
           </p>
         </div>
 
@@ -357,7 +361,9 @@ export default function Contact() {
                           type="tel"
                           inputMode="numeric"
                           placeholder="0312345678"
-                          value={phoneDisplay || formatPhoneForDisplay(field.value)}
+                          value={
+                            phoneDisplay || formatPhoneForDisplay(field.value)
+                          }
                           onChange={(e) => {
                             const normalizedValue = onPhoneNumberChange(e);
                             field.onChange(normalizedValue);

@@ -7,7 +7,7 @@ const AnimatedHeading = () => {
   const { company } = useTranslations();
 
   return (
-    <div className="overflow-hidden whitespace-nowrap flex items-center relative">
+    <div className="overflow-hidden whitespace-nowrap flex flex-col items-center relative">
       <motion.div
         className="inline-block"
         initial={{ x: "50vw" }} // Start slightly visible from the right
@@ -33,9 +33,11 @@ const AnimatedHeading = () => {
         </h2>
       </motion.div>
 
-      <p className="absolute bottom-0 left-0 text-xl mlg:text-[32px] text-web-main font-bold">
-        {company.animatedHeading.subText}
-      </p>
+      <div className="relative container mx-auto">
+        <p className="absolute bottom-0 left-6 xl:left-8 2xl:left-10 text-xl mlg:text-[32px] text-web-main font-bold">
+          {company.animatedHeading.subText}
+        </p>
+      </div>
     </div>
   );
 };

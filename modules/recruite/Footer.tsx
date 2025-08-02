@@ -29,7 +29,7 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center gap-4"
           >
-            <Link href="/" className="block size-full">
+            <Link href="/recruit" className="block size-full">
               <Image
                 src="/images/light-logo.png"
                 alt="logo"

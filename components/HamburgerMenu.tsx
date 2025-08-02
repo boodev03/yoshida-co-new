@@ -1,10 +1,4 @@
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   Sheet,
   SheetContent,
   SheetTitle,
@@ -120,26 +114,25 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
         <div className="space-y-4">
           {navbarItems.map((item) =>
             item.children ? (
-              <Accordion type="single" collapsible key={item.label}>
-                <AccordionItem value="item-1">
-                  <Link href={item.href}>
-                    <AccordionTrigger className="text-white text-sm font-bold tracking-[-0.015em] py-0">
-                      {item.label}
-                    </AccordionTrigger>
-                  </Link>
-                  <AccordionContent className="space-y-4 px-4 text-white pt-4">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        href={child.href}
-                        className="text-white block text-sm font-bold tracking-[-0.015em] hover:opacity-30"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <div key={item.label} className="space-y-4">
+                <Link
+                  href={item.href}
+                  className="text-white text-sm font-bold tracking-[-0.015em] hover:opacity-30"
+                >
+                  {item.label}
+                </Link>
+                <div className="space-y-4 px-4 mt-2">
+                  {item.children.map((child) => (
+                    <Link
+                      key={child.label}
+                      href={child.href}
+                      className="text-white block text-sm font-bold tracking-[-0.015em] hover:opacity-30"
+                    >
+                      {child.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             ) : (
               <div key={item.label}>
                 <Link
@@ -154,12 +147,11 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
         </div>
 
         <div className="flex flex-col items-center gap-[62px]">
-          <Button
-            onClick={() => router.push("/contact")}
-            className="bg-white text-web-main hover:bg-white/80"
-          >
-            {tPath("common.contact")}
-          </Button>
+          <Link href="/contact" className="inline-block">
+            <Button className="bg-white text-web-main hover:bg-white/80">
+              {tPath("common.contact")}
+            </Button>
+          </Link>
           <div className="flex items-center gap-6">
             <a
               href="https://www.instagram.com/yoshida1923_japan/"

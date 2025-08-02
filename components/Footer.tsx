@@ -1,12 +1,6 @@
 "use client";
 import Image from "next/image";
 import { Copy } from "./icons/Copy";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./ui/accordion";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "@/providers/translation-provider";
@@ -112,11 +106,11 @@ export default function Footer() {
                 <div className="space-y-4">
                   <Link
                     href="/technology"
-                    className="text-white hidden md:block text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white"
+                    className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                   >
                     ヨシダの技術
                   </Link>
-                  <ul className="space-y-2 hidden md:block">
+                  <ul className="space-y-2">
                     {["設計", "製缶・溶接", "機械加工", "研究開発"].map(
                       (item, index) => (
                         <li key={index}>
@@ -139,47 +133,15 @@ export default function Footer() {
                       )
                     )}
                   </ul>
-                  <Accordion type="single" collapsible className="md:hidden">
-                    <AccordionItem value="item-1">
-                      <AccordionTrigger className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white rounded-none">
-                        ヨシダの技術
-                      </AccordionTrigger>
-                      <AccordionContent className="space-y-4 px-4 text-white pt-4">
-                        <ul className="space-y-2">
-                          {["設計", "製缶・溶接", "機械加工", "研究開発"].map(
-                            (item, index) => (
-                              <li key={index}>
-                                <Link
-                                  href={`/technology/${
-                                    item === "設計"
-                                      ? "design"
-                                      : item === "製缶・溶接"
-                                      ? "welding"
-                                      : item === "機械加工"
-                                      ? "machining"
-                                      : "development"
-                                  }`}
-                                  className="cursor-pointer text-white text-xs tracking-[-0.015em] font-medium flex items-center gap-2 hover:opacity-30 transition-opacity duration-300"
-                                >
-                                  <span className="block w-2 border-1 border-white rounded-full" />
-                                  {item}
-                                </Link>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
                 </div>
                 <div className="space-y-4">
                   <Link
                     href="/factory-and-quality"
-                    className="text-white hidden md:block text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white"
+                    className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                   >
                     工場と品質への取り組み
                   </Link>
-                  <ul className="space-y-2 hidden md:block">
+                  <ul className="space-y-2">
                     {["工場設備", "品質保証"].map((item, index) => (
                       <li key={index}>
                         <Link
@@ -194,30 +156,6 @@ export default function Footer() {
                       </li>
                     ))}
                   </ul>
-                  <Accordion type="single" collapsible className="md:hidden">
-                    <AccordionItem value="item-1">
-                      <AccordionTrigger className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white rounded-none">
-                        工場と品質への取り組み
-                      </AccordionTrigger>
-                      <AccordionContent className="space-y-4 px-4 text-white pt-4">
-                        <ul className="space-y-2">
-                          {["工場設備", "品質管理"].map((item, index) => (
-                            <li key={index}>
-                              <Link
-                                href={`/factory-and-quality/${
-                                  item === "工場設備" ? "equipment" : "quality"
-                                }`}
-                                className="cursor-pointer text-white text-xs tracking-[-0.015em] font-medium flex items-center gap-2 hover:opacity-30 transition-opacity duration-300"
-                              >
-                                <span className="block w-2 border-1 border-white rounded-full" />
-                                {item}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
                 </div>
               </div>
               <div className="basis-1/3 space-y-10">

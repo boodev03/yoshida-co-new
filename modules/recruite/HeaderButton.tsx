@@ -16,6 +16,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const LanguageButton = ({ isWhite }: IProps) => {
   const { dict, locale } = useTranslations();
@@ -66,7 +67,6 @@ const LanguageButton = ({ isWhite }: IProps) => {
 };
 
 export default function HeaderButton({ isWhite, className }: IProps) {
-  const router = useRouter();
   const { dict } = useTranslations();
 
   return (
@@ -87,17 +87,17 @@ export default function HeaderButton({ isWhite, className }: IProps) {
       <LanguageButton isWhite={isWhite} />
 
       {/* CTA Button */}
-      <Button
-        onClick={() => {
-          router.push("/recruit/entry");
-        }}
-        className={cn(
-          "ml-3 bg-web-main text-white rounded-[3px] h-[42px] hover:border-web-main hover:bg-white hover:text-web-main transition",
-          isWhite && "bg-white text-web-main hover:bg-web-main hover:text-white"
-        )}
-      >
-        {dict.recruit.headerButton.entry}
-      </Button>
+      <Link href="/recruit/entry" className="inline-block">
+        <Button
+          className={cn(
+            "ml-3 bg-web-main text-white rounded-[3px] h-[42px] hover:border-web-main hover:bg-white hover:text-web-main transition",
+            isWhite &&
+              "bg-white text-web-main hover:bg-web-main hover:text-white"
+          )}
+        >
+          {dict.recruit.headerButton.entry}
+        </Button>
+      </Link>
     </div>
   );
 }

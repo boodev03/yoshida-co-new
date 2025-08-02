@@ -46,7 +46,7 @@ export default function Header({ isWhite = true }: IProps) {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="flex items-center gap-2"
       >
-        <Link href="/" className="block">
+        <Link href="/recruit" className="block">
           <Image
             src={
               isWhite
