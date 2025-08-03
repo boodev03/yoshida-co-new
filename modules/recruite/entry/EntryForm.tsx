@@ -113,7 +113,13 @@ export default function EntryForm() {
         required_error: entryForm.fields.phone.required,
       })
       .min(1, entryForm.fields.phone.required)
-      .regex(/^0\d{9,10}$/, entryForm.fields.phone.invalid),
+      .regex(/^0\d{9,10}$/, entryForm.fields.phone.invalid)
+      .refine((val) => {
+        const digits = val.replace(/[^\d]/g, "");
+        return (
+          digits.length >= 10 && digits.length <= 11 && digits.startsWith("0")
+        );
+      }, entryForm.fields.phone.invalid),
 
     message: z.string().optional(),
 
@@ -231,26 +237,45 @@ export default function EntryForm() {
   }, [form, phoneDisplay]);
 
   const formatPhoneForDisplay = (digits: string) => {
-    if (digits.length <= 3) {
+    // Handle different Japanese phone number formats
+    if (digits.length <= 2) {
       return digits;
-    } else if (digits.length <= 7) {
-      return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    } else if (digits.length <= 6) {
+      return `${digits.slice(0, 2)}-${digits.slice(2)}`;
+    } else if (digits.length === 10) {
+      // 10-digit format: 03-4500-7216 or 090-1234-5678
+      if (
+        digits.startsWith("03") ||
+        digits.startsWith("04") ||
+        digits.startsWith("06")
+      ) {
+        return `${digits.slice(0, 2)}-${digits.slice(2, 6)}-${digits.slice(6)}`;
+      } else {
+        return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+      }
+    } else if (digits.length === 11) {
+      // 11-digit format: 090-1234-5678
+      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
     } else {
-      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
+      // Fallback for other lengths
+      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(
+        7,
+        11
+      )}`;
     }
   };
 
   const onPhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Remove all non-digit characters to get clean digits
     const digits = e.target.value.replace(/[^\d]/g, "");
-    
+
     // Limit to 11 digits max
     const limitedDigits = digits.slice(0, 11);
-    
+
     // Format for display
     const formattedDisplay = formatPhoneForDisplay(limitedDigits);
     setPhoneDisplay(formattedDisplay);
-    
+
     // Store normalized digits only
     return limitedDigits;
   };
@@ -259,7 +284,7 @@ export default function EntryForm() {
     <motion.section
       onViewportEnter={handleViewportEnter}
       onViewportLeave={handleViewportLeave}
-      className="relative pt-[82px] mlg:pt-[90px] font-gothic"
+      className="relative pt-[82px] mlg:pt-[90px] font-shippori-mincho"
     >
       {/* First triangle - TOP LEFT */}
       <motion.div
@@ -488,8 +513,10 @@ export default function EntryForm() {
                           <Input
                             type="tel"
                             inputMode="numeric"
-                            placeholder="0312345678"
-                            value={phoneDisplay || formatPhoneForDisplay(field.value)}
+                            placeholder="03-4500-7216"
+                            value={
+                              phoneDisplay || formatPhoneForDisplay(field.value)
+                            }
                             onChange={(e) => {
                               const normalizedValue = onPhoneNumberChange(e);
                               field.onChange(normalizedValue);

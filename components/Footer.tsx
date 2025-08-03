@@ -61,11 +61,10 @@ const LanguageButton = () => {
 };
 
 export default function Footer() {
+  const { home } = useTranslations();
+  const footer = home.footer;
   return (
-    <footer
-      id="footer"
-      className="bg-web-dark pt-[75px] mlg:pt-[130px] pb-6 relative"
-    >
+    <footer id="footer" className="bg-web-dark pb-6 relative">
       <div className="container">
         <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center gap-[84px] xl:gap-0">
           <div className="basis-1/5 space-y-12">
@@ -77,11 +76,10 @@ export default function Footer() {
             />
             <div className="space-y-2">
               <p className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold">
-                本社工場
+                {footer.addressTitle}
               </p>
               <p className="text-white text-sm leading-[1.6] tracking-[-0.015em] font-medium whitespace-pre-line">
-                {`〒311-1135
-茨城県水戸市六反田町1279番地の1`}
+                {footer.address}
               </p>
             </div>
           </div>
@@ -93,13 +91,13 @@ export default function Footer() {
                   href="/company"
                   className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                 >
-                  企業情報
+                  {footer.company}
                 </Link>
                 <Link
                   href="/case"
                   className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                 >
-                  開発事例
+                  {footer.case}
                 </Link>
               </div>
               <div className="basis-1/3 space-y-10">
@@ -108,26 +106,18 @@ export default function Footer() {
                     href="/technology"
                     className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                   >
-                    ヨシダの技術
+                    {footer.technology}
                   </Link>
                   <ul className="space-y-2">
-                    {["設計", "製缶・溶接", "機械加工", "研究開発"].map(
-                      (item, index) => (
-                        <li key={index}>
+                    {Object.entries(footer.technologyLinks).map(
+                      ([key, value]) => (
+                        <li key={key}>
                           <Link
-                            href={`/technology/${
-                              item === "設計"
-                                ? "design"
-                                : item === "製缶・溶接"
-                                ? "welding"
-                                : item === "機械加工"
-                                ? "machining"
-                                : "development"
-                            }`}
+                            href={`/technology/${key}`}
                             className="cursor-pointer text-white text-xs tracking-[-0.015em] font-medium flex items-center gap-2 hover:opacity-30 transition-opacity duration-300"
                           >
                             <span className="block w-2 border-1 border-white rounded-full" />
-                            {item}
+                            {value}
                           </Link>
                         </li>
                       )
@@ -139,22 +129,22 @@ export default function Footer() {
                     href="/factory-and-quality"
                     className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                   >
-                    工場と品質への取り組み
+                    {footer.factoryAndQuality}
                   </Link>
                   <ul className="space-y-2">
-                    {["工場設備", "品質保証"].map((item, index) => (
-                      <li key={index}>
-                        <Link
-                          href={`/factory-and-quality/${
-                            item === "工場設備" ? "equipment" : "quality"
-                          }`}
-                          className="cursor-pointer text-white text-xs tracking-[-0.015em] font-medium flex items-center gap-2 hover:opacity-30 transition-opacity duration-300"
-                        >
-                          <span className="block w-2 border-1 border-white rounded-full" />
-                          {item}
-                        </Link>
-                      </li>
-                    ))}
+                    {Object.entries(footer.factoryAndQualityLinks).map(
+                      ([key, value]) => (
+                        <li key={key}>
+                          <Link
+                            href={`/factory-and-quality/${key}`}
+                            className="cursor-pointer text-white text-xs tracking-[-0.015em] font-medium flex items-center gap-2 hover:opacity-30 transition-opacity duration-300"
+                          >
+                            <span className="block w-2 border-1 border-white rounded-full" />
+                            {value}
+                          </Link>
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
               </div>
@@ -163,13 +153,13 @@ export default function Footer() {
                   href="/news"
                   className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                 >
-                  新着情報
+                  {footer.news}
                 </Link>
                 <Link
                   href="/recruit"
                   className="cursor-pointer text-white flex items-center gap-2 text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white hover:opacity-30 transition-opacity duration-300"
                 >
-                  採用情報
+                  {footer.recruit}
                   <Copy />
                 </Link>
 
@@ -177,13 +167,13 @@ export default function Footer() {
                   href="/contact"
                   className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                 >
-                  お問い合わせ
+                  {footer.contact}
                 </Link>
                 <Link
                   href="/company/policy"
                   className="text-white text-base leading-[1.6] tracking-[0.02em] font-bold pb-4 border-b border-white block hover:opacity-30 transition-opacity duration-300"
                 >
-                  プライバシーポリシー
+                  {footer.policy}
                 </Link>
               </div>
             </div>
@@ -196,7 +186,7 @@ export default function Footer() {
         </div>
 
         <p className="text-xs text-white leading-[1.6] tracking-[0.02em] font-bold py-[22px] md:py-4 mt-[60px] md:mt-14 text-center md:text-left">
-          ©︎株式会社ヨシダ
+          {footer.copyright}
         </p>
       </div>
     </footer>

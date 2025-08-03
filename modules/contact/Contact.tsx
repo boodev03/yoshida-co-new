@@ -72,7 +72,11 @@ export default function Contact() {
         required_error: contact.fields.phone.required,
       })
       .min(1, contact.fields.phone.required)
-      .regex(/^0\d{9,10}$/, contact.fields.phone.invalid),
+      .regex(/^0\d{9,10}$/, contact.fields.phone.invalid)
+      .refine((val) => {
+        const digits = val.replace(/[^\d]/g, "");
+        return digits.length >= 10 && digits.length <= 11 && digits.startsWith("0");
+      }, contact.fields.phone.invalid),
 
     email: z
       .string({
@@ -200,15 +204,24 @@ export default function Contact() {
   }, [form, phoneDisplay]);
 
   const formatPhoneForDisplay = (digits: string) => {
-    if (digits.length <= 3) {
+    // Handle different Japanese phone number formats
+    if (digits.length <= 2) {
       return digits;
-    } else if (digits.length <= 7) {
-      return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    } else if (digits.length <= 6) {
+      return `${digits.slice(0, 2)}-${digits.slice(2)}`;
+    } else if (digits.length === 10) {
+      // 10-digit format: 03-4500-7216 or 090-1234-5678
+      if (digits.startsWith('03') || digits.startsWith('04') || digits.startsWith('06')) {
+        return `${digits.slice(0, 2)}-${digits.slice(2, 6)}-${digits.slice(6)}`;
+      } else {
+        return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+      }
+    } else if (digits.length === 11) {
+      // 11-digit format: 090-1234-5678
+      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
     } else {
-      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(
-        7,
-        11
-      )}`;
+      // Fallback for other lengths
+      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
     }
   };
 
@@ -360,7 +373,7 @@ export default function Contact() {
                         <Input
                           type="tel"
                           inputMode="numeric"
-                          placeholder="0312345678"
+                          placeholder="03-4500-7216"
                           value={
                             phoneDisplay || formatPhoneForDisplay(field.value)
                           }

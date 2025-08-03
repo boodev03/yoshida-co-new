@@ -89,8 +89,46 @@
     "career": {
       "title": "Job Openings",
       "heading": "Recruitment",
-      "description": "At Yoshida Co., Ltd., we’re looking for people who want to use their skills to help make a difference in society.",
+      "description": "At Yoshida Inc., Ltd., we’re looking for people who want to use their skills to help make a difference in society.",
       "button": "View Careers"
+    },
+    "contact": {
+      "title": "CONTACT",
+      "heading": "Inquiries",
+      "description": "For requests for quotes or inquiries about manufacturing, please contact us here.",
+      "button": "Contact Us",
+      "phone": {
+        "label": "Hours:",
+        "number": "029-297-1005",
+        "hours": "Hours: 8:00 - 17:00 (Excluding Weekends and Holidays)"
+      }
+    },
+    "footer": {
+      "company": "Company",
+      "case": "Case Studies",
+      "technology": "Technologies",
+      "technologyLinks": {
+        "design": "Planning and Design",
+        "welding": "Can Manufacturing/Welding",
+        "machining": "Machining",
+        "development": "Research and Development"
+      },
+      "factoryAndQuality": "Manufacturing & Quality",
+      "factoryAndQualityLinks": {
+        "equipment": "Factory Equipment",
+        "quality": "Quality Assurance"
+      },
+      "news": "News",
+      "recruit": "Recruitment",
+      "contact": "Contact",
+      "policy": "Privacy Policy",
+      "addressTitle": "Head Office Factory",
+      "address": "1-1279 Rokutanda-cho, Mito-shi, Ibaraki 311-1135, Japan",
+      "copyright": "©︎Yoshida Inc",
+      "language": {
+        "ja": "日本語",
+        "en": "EN"
+      }
     }
   },
   "company": {
@@ -178,7 +216,7 @@
         {
           "year": 1959,
           "detail": "April",
-          "content": "The company changed to a corporate structure and was established as Yoshida Ironworks Inc., Ltd., with Ken Yoshida appointed as President."
+          "content": "The company changed to a corporate structure and was established as Yoshida Ironworks Inc., with Ken Yoshida appointed as President."
         },
         {
           "year": 1961,
@@ -213,7 +251,7 @@
         {
           "year": 1992,
           "detail": "February",
-          "content": "The company reorganized as a corporation and established as Yoshida Inc., Ltd."
+          "content": "The company reorganized as a corporation and established as Yoshida Inc."
         },
         {
           "year": 1993,
@@ -837,9 +875,9 @@
     },
     "aboutUs": {
       "message": "MESSAGE",
-      "title1": "技術者の挑戦が続く場所",
-      "title2": "廃炉から宇宙まで",
-      "content": "株式会社ヨシダでは、\n福島第一原子力発電所の廃炉で培った遮へい・隔離技術を\n医薬品や宇宙分野へ応用。\n大学や研究機関、ベンチャー企業と協業することで、\n新たな業界へと挑戦しています。 \n\n毎日、初めて挑む難題に直面することばかり。\n決して簡単なことではありません。 \nそれでも、日々実験を重ねるようにアイデアを生み出し、\n部門を超えたチームで一丸となって難題を解決していく。\n\n日々の技術の研鑽が、\n今までのあなたの知識や技術を広げ、\n新たな未来を作る力に。\n\nAlways be a Pioneer.\nヨシダは、あなたの挑戦する心をお待ちしています。",
+      "title1": "from decommissioning to space.",
+      "title2": "A place where engineers continue their challenges",
+      "content": "At Yoshida Inc., we leverage the shielding and isolation technologies developed through the decommissioning of Fukushima Daiichi Nuclear Power Plant and apply them to pharmaceutical and aerospace industries.\nBy partnering with universities, research institutes, and startups, we’re constantly exploring new frontiers across a variety of industries.\nEvery day brings fresh, unprecedented challenges—nothing here is easy.\nBut just like in an experiment, we keep generating new ideas, and as a close-knit team working across departments, we face these challenges together.\n\nThrough continuous technical growth, you’ll expand your knowledge and skills, gaining the power to shape a new future.\n\nAlways be a Pioneer.\nAt Yoshida, we welcome your pioneering spirit.",
       "button": "業務について",
       "subtitle": "お客様の課題をワンストップで解決するヨシダの仕事。"
     },
@@ -997,13 +1035,13 @@
     "title": "Career Path",
     "bannerAlt": "Career Path",
     "verticalTexts": [
-      "From nuclear decommissioning to medical",
-      "and aerospace fields, our employees boldly",
-      "step into new industries and constantly",
-      "take on fresh challenges with their teams.",
-      "Here’s an example of how they leverage",
+      "Yoshida.",
       "their knowledge and skills to thrive at",
-      "Yoshida."
+      "Here’s an example of how they leverage",
+      "take on fresh challenges with their teams.",
+      "step into new industries and constantly",
+      "and aerospace fields, our employees boldly",
+      "From nuclear decommissioning to medical"
     ],
     "cards": [
       {

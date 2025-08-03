@@ -5,13 +5,14 @@ import { useTransform, motion, useScroll } from "framer-motion";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useTranslations } from "@/providers/translation-provider";
+import { cn } from "@/lib/utils";
 
 export default function AboutUs() {
   const sectionRef = useRef(null);
   const [isInView, setIsInView] = useState(false);
   const [startScrollY, setStartScrollY] = useState(0);
   const { scrollY } = useScroll();
-  const { recruit } = useTranslations();
+  const { recruit, locale } = useTranslations();
   const { aboutUs } = recruit;
 
   const ScrollDown = () => {
@@ -101,7 +102,10 @@ export default function AboutUs() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                className="text-jp-h1 text-white font-shippori-mincho font-bold bg-web-main p-4 relative translate-y-1/3 sm:translate-y-1/4 md:translate-y-1/3"
+                className={cn(
+                  "text-jp-h1 text-white font-shippori-mincho font-bold bg-web-main p-4 relative translate-y-1/3 sm:translate-y-1/4 md:translate-y-1/3",
+                  locale === "en" && "hidden"
+                )}
               >
                 {aboutUs.title1.split("").map((char, index) => (
                   <span key={index}>
@@ -113,14 +117,53 @@ export default function AboutUs() {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className={cn(
+                  "text-jp-h1 text-white font-shippori-mincho font-bold bg-web-main p-4 relative",
+                  locale === "ja" && "hidden"
+                )}
+                style={{
+                  writingMode: "vertical-lr",
+                  WebkitWritingMode: "vertical-lr",
+                  msWritingMode: "vertical-lr",
+                }}
+              >
+                {aboutUs.title1}
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="text-jp-h1 text-white font-shippori-mincho font-bold bg-web-main p-4"
+                className={cn(
+                  "text-jp-h1 text-white font-shippori-mincho font-bold bg-web-main p-4",
+                  locale === "en" && "hidden"
+                )}
               >
                 {aboutUs.title2.split("").map((char, index) => (
                   <span key={index}>
                     {char} {index < aboutUs.title2.length - 1 && <br />}
                   </span>
                 ))}
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                style={{
+                  writingMode: "vertical-lr",
+                  WebkitWritingMode: "vertical-lr",
+                  msWritingMode: "vertical-lr",
+                }}
+                className={cn(
+                  locale === "ja" && "hidden",
+                  "text-jp-h1 text-white font-shippori-mincho font-bold bg-web-main p-4"
+                )}
+              >
+                {aboutUs.title2}
               </motion.p>
             </motion.div>
             <div className="aspect-square w-[544px] max-w-full relative -top-[70px] -left-6 z-0 mlg:hidden">

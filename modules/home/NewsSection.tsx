@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslations } from "@/providers/translation-provider";
+import { useGetNews } from "@/hooks/useGetNews";
 
 interface NewCardProps {
   image: string;
@@ -91,45 +92,16 @@ const NewCard = ({
 
 export default function NewsSection() {
   const { tPath } = useTranslations();
+  const { data: newsData, isLoading, error } = useGetNews(4);
 
-  const news = [
-    {
-      image: "/images/news-1.png",
-      category: tPath("home.news.category"),
-      title: "ツギノジダイ　インタビュー記事　掲載",
-      shortDesc:
-        "「ツギノジダイ」へ弊社代表取締役のインタビュー記事が掲載されました。 詳細は、下記リンクをご参照ください。",
-      date: "2025/03/30",
-      href: "#",
-    },
-    {
-      image: "/images/news-1.png",
-      category: tPath("home.news.category"),
-      title: "ツギノジダイ　インタビュー記事　掲載",
-      shortDesc:
-        "「ツギノジダイ」へ弊社代表取締役のインタビュー記事が掲載されました。 詳細は、下記リンクをご参照ください。",
-      date: "2025/03/30",
-      href: "#",
-    },
-    {
-      image: "/images/news-1.png",
-      category: tPath("home.news.category"),
-      title: "ツギノジダイ　インタビュー記事　掲載",
-      shortDesc:
-        "「ツギノジダイ」へ弊社代表取締役のインタビュー記事が掲載されました。 詳細は、下記リンクをご参照ください。",
-      date: "2025/03/30",
-      href: "#",
-    },
-    {
-      image: "/images/news-1.png",
-      category: tPath("home.news.category"),
-      title: "ツギノジダイ　インタビュー記事　掲載",
-      shortDesc:
-        "「ツギノジダイ」へ弊社代表取締役のインタビュー記事が掲載されました。 詳細は、下記リンクをご参照ください。",
-      date: "2025/03/30",
-      href: "#",
-    },
-  ];
+  const news = newsData?.cases?.slice(0, 4).map(item => ({
+    image: item.thumbnail || "/images/news-1.png",
+    category: item.category || tPath("home.news.category"),
+    title: item.title,
+    shortDesc: item.cardDescription,
+    date: item.date,
+    href: `/news/${item.id}`,
+  })) || [];
 
   return (
     <motion.section
@@ -198,9 +170,19 @@ export default function NewsSection() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="flex -mx-4 overflow-x-auto"
         >
-          {news.map((item, index) => (
-            <NewCard key={index} {...item} index={index} />
-          ))}
+          {isLoading ? (
+            <div className="w-full text-center py-8">
+              <p>Loading news...</p>
+            </div>
+          ) : error ? (
+            <div className="w-full text-center py-8">
+              <p>Error loading news</p>
+            </div>
+          ) : (
+            news.map((item, index) => (
+              <NewCard key={item.href} {...item} index={index} />
+            ))
+          )}
         </motion.div>
       </div>
     </motion.section>

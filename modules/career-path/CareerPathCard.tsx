@@ -90,7 +90,7 @@ export default function CareerPathCard({
           <p className="text-base text-web-main font-bold mb-4 text-center">
             BEFORE
           </p>
-          <div className="bg-web-main gap-1.5 py-0 w-[88px] h-[264px] flex flex-row-reverse justify-center items-center">
+          <div className="bg-web-main gap-1.5 py-2 min-w-[88px] h-[264px] flex flex-row-reverse justify-center items-center">
             <p
               style={{
                 writingMode: "vertical-rl",
@@ -117,7 +117,7 @@ export default function CareerPathCard({
             <div key={index} className="flex items-center w-full gap-2">
               <motion.div
                 variants={itemVariants}
-                className="w-[88px] gap-1.5 bg-web-main h-[264px] py-0 flex flex-row-reverse justify-center items-center"
+                className="w-[88px] gap-1.5 bg-web-main h-[264px] py-2 flex flex-row-reverse justify-center items-center"
               >
                 <p
                   style={{

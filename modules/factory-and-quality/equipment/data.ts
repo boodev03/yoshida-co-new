@@ -261,7 +261,7 @@ export const equipmentList: Equipment[] = [
   {
     name: "バレル研磨機",
     quantity: 1,
-    model: "TM-8型",
+    model: "TM-8",
     capacity: "-",
   },
   {
@@ -708,7 +708,7 @@ export const equipmentListEnglish: Equipment[] = [
   {
     name: "Barrel Polishing Machine",
     quantity: 1,
-    model: "TM-8型",
+    model: "TM-8",
     capacity: "-",
   },
   {

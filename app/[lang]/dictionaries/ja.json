@@ -91,6 +91,44 @@
       "heading": "採用情報",
       "description": "株式会社ヨシダでは、自らの技術を社会に役立てたいと考える人材を募集しています。",
       "button": "採用情報を見る"
+    },
+    "contact": {
+      "title": "CONTACT",
+      "heading": "お問い合わせ",
+      "description": "見積のご依頼や、製造に関するお問い合わせはこちらから",
+      "button": "お問い合わせ",
+      "phone": {
+        "label": "電話",
+        "number": "029-297-1005",
+        "hours": "受付時間 8:00 - 17:00 ( 土日・祝日除く )"
+      }
+    },
+    "footer": {
+      "company": "企業情報",
+      "case": "開発事例",
+      "technology": "ヨシダの技術",
+      "technologyLinks": {
+        "design": "設計",
+        "welding": "製缶・溶接",
+        "machining": "機械加工",
+        "development": "研究開発"
+      },
+      "factoryAndQuality": "工場と品質への取り組み",
+      "factoryAndQualityLinks": {
+        "equipment": "工場設備",
+        "quality": "品質保証"
+      },
+      "news": "新着情報",
+      "recruit": "採用情報",
+      "contact": "お問い合わせ",
+      "policy": "プライバシーポリシー",
+      "addressTitle": "本社工場",
+      "address": "〒311-1135\n茨城県水戸市六反田町1279番地の1",
+      "copyright": "©︎株式会社ヨシダ",
+      "language": {
+        "ja": "日本語",
+        "en": "EN"
+      }
     }
   },
   "news": {

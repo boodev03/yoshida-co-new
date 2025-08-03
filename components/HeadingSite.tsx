@@ -20,7 +20,7 @@ export default function HeadingSite({
 }: HeadingSiteProps) {
   return (
     <div className="relative mt-10 flex">
-      <p className="absolute bottom-10 left-[10%] z-50 w-max flex flex-col text-white flex-1">
+      <p className="absolute bottom-0 md:bottom-10 left-[10%] z-50 w-max flex flex-col text-white flex-1">
         <motion.span
           className="section-title text-[13px] md:text-[16px] whitespace-nowrap"
           initial={{ opacity: 0, y: 20 }}
@@ -44,13 +44,13 @@ export default function HeadingSite({
         style={{
           clipPath: "polygon(13.4% 0%, 100% 0%, 86.6% 100%, 0% 100%)",
         }}
-        className="bg-web-main h-auto w-1/2 mlg:max-w-1/2 absolute bottom-0 mlg:top-[10%] -left-[3%] md:-left-[5%] mlg:-left-[2%] z-10 aspect-[1.73]"
+        className="bg-web-main h-auto w-1/2 mlg:max-w-1/2 absolute -bottom-6 md:bottom-0 mlg:top-[10%] -left-[3%] md:-left-[5%] mlg:-left-[2%] z-10 aspect-[1.73]"
         initial={{ opacity: 0, x: -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.7, delay: 0.2 }}
       ></motion.div>
-      <div className="flex-1 flex flex-col items-end pb-[60px] md:aspect-auto">
+      <div className="flex-1 flex flex-col items-end md:aspect-auto">
         <motion.div
           className="relative aspect-video w-[68.88889%]"
           initial={{ opacity: 0, x: 30 }}

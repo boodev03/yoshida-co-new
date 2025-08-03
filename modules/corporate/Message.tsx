@@ -13,7 +13,7 @@ export default function Message() {
       <div
         className={cn(
           "w-full max-w-[1048px] shrink-0 aspect-video bg-web-light-bg overflow-hidden",
-          "absolute top-full -translate-y-12 md:top-1/2 -right-[20%] md:-right-[5%]"
+          "absolute top-full -translate-y-1/2 -right-[20%] md:-right-[5%]"
         )}
         style={{
           clipPath: "polygon(0% 0%, 75% 0%, 100% 100%, 25% 100%)",

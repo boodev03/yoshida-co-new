@@ -4,17 +4,20 @@ import { Mail } from "@/components/icons/Mail";
 import { Phone } from "@/components/icons/Phone";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "@/providers/translation-provider";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function ContactSection() {
+  const { home } = useTranslations();
+  const contact = home.contact;
   return (
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8 }}
-      className="relative pb-20 bg-web-dark"
+      className="relative bg-web-dark"
     >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -47,7 +50,7 @@ export default function ContactSection() {
                 transition={{ duration: 0.5, delay: 0.4 }}
                 className="relative z-10 section-title text-white uppercase"
               >
-                CONTACT
+                {contact?.title ?? "CONTACT"}
                 <div
                   className="absolute top-0 left-0 -translate-x-1/2 size-[30px] -z-[1] bg-web-light rotate-[135deg]"
                   style={{ clipPath: "polygon(50% 0%, 100% 82%, 0% 82%)" }}
@@ -60,7 +63,7 @@ export default function ContactSection() {
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="text-jp-h2 text-white mb-4"
               >
-                お問い合わせ
+                {contact?.heading ?? "お問い合わせ"}
               </motion.p>
             </div>
 
@@ -71,7 +74,8 @@ export default function ContactSection() {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="text-jp-p2 text-white"
             >
-              見積のご依頼や、製造に関するお問い合わせはこちらから
+              {contact?.description ??
+                "見積のご依頼や、製造に関するお問い合わせはこちらから"}
             </motion.p>
           </motion.div>
 
@@ -81,7 +85,7 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full md:w-[350px] max-w-full space-y-6 md:space-y-8"
+            className="w-full md:w-[380px] max-w-full space-y-6 md:space-y-8"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -97,7 +101,7 @@ export default function ContactSection() {
                   )}
                 >
                   <Mail />
-                  お問い合わせ
+                  {contact?.button ?? "お問い合わせ"}
                 </Button>
               </Link>
             </motion.div>
@@ -115,10 +119,11 @@ export default function ContactSection() {
               >
                 <p className="flex items-center text-2xl md:text-[32px]leading-[1.6] tracking-[0.02em] font-normal">
                   <Phone />
-                  029-297-1005
+                  {contact?.phone?.number ?? "029-297-1005"}
                 </p>
                 <p className="group-hover:text-white transition-all duration-300 text-web-light font-medium text-sm tracking-[-0.015em] leading-[17px]">
-                  受付時間 8:00 - 17:00 ( 土日・祝日除く )
+                  {contact?.phone?.hours ??
+                    "受付時間 8:00 - 17:00 ( 土日・祝日除く )"}
                 </p>
               </Button>
             </motion.div>
