@@ -14,7 +14,7 @@ export default function BlogList() {
   const { news: newsTranslations, locale } = useTranslations();
   const { activeCategory } = useBlogContext();
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   // Fetch all news at once for client-side filtering and pagination
   const { data, isLoading, error } = useGetNews(100, locale); // Fetch more items
 
@@ -77,18 +77,18 @@ export default function BlogList() {
     if (activeCategory === newsTranslations.categories.all) {
       return true;
     }
-    
+
     // For announcement category, check if category is "news" or "new" (case-insensitive)
     if (activeCategory === newsTranslations.categories.announcement) {
       const categoryLower = newsItem.category.toLowerCase();
       return categoryLower === "news" || categoryLower === "new";
     }
-    
+
     // For development category, match exactly
     if (activeCategory === newsTranslations.categories.development) {
       return newsItem.category.toLowerCase() === "development";
     }
-    
+
     return false;
   });
 
@@ -133,7 +133,9 @@ export default function BlogList() {
             onClick={handlePrevPage}
             className={cn(
               "p-2 text-web-main transition-colors rotate-180",
-              currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:opacity-70"
+              currentPage === 1
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:opacity-70"
             )}
             disabled={currentPage === 1}
           >
@@ -161,7 +163,9 @@ export default function BlogList() {
             onClick={handleNextPage}
             className={cn(
               "p-2 text-web-main transition-colors",
-              currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:opacity-70"
+              currentPage === totalPages
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:opacity-70"
             )}
             disabled={currentPage === totalPages}
           >
@@ -173,7 +177,7 @@ export default function BlogList() {
       {/* Show message when no items found */}
       {filteredNews.length === 0 && !isLoading && (
         <div className="text-center text-gray-500 py-12">
-          {newsTranslations.noItemsFound || "No articles found for this category."}
+          {"No articles found for this category."}
         </div>
       )}
     </div>
