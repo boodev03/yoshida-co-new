@@ -23,10 +23,7 @@ export default function BlogItem({
 }: IProps) {
   return (
     <div className="w-full shrink-0">
-      <Link
-        href={href}
-        className="space-y-4 block group"
-      >
+      <Link href={href} className="space-y-4 block group">
         <div className="relative aspect-video group-hover:opacity-50 transition-opacity duration-300">
           <Image
             src={image}
@@ -48,7 +45,7 @@ export default function BlogItem({
           <p className="text-sm text-web-main font-bold leading-[1.625] tracking-[0.02em]">
             {date}
           </p>
-          <Button className="h-6 px-4 text-xs">お知らせ</Button>
+          <Button className="h-6 px-4 text-xs">{category}</Button>
         </div>
       </Link>
     </div>

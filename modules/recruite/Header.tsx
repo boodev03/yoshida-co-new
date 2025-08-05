@@ -8,6 +8,7 @@ import Link from "next/link";
 import Navbar from "./Navbar";
 import HamburgerMenu from "./HamburgerMenu";
 import HeaderButton from "./HeaderButton";
+import { useTranslations } from "@/providers/translation-provider";
 
 interface IProps {
   isWhite?: boolean;
@@ -15,7 +16,7 @@ interface IProps {
 
 export default function Header({ isWhite = true }: IProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { locale } = useTranslations();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -51,14 +52,20 @@ export default function Header({ isWhite = true }: IProps) {
             src={
               isWhite
                 ? isScrolled
-                  ? "/images/logo.png"
-                  : "/images/light-logo.png"
-                : "/images/logo.png"
+                  ? locale === "ja"
+                    ? "/images/logo.png"
+                    : "/images/Logo_en.svg"
+                  : locale === "ja"
+                  ? "/images/light-logo.png"
+                  : "/images/Logo_en_white.svg"
+                : locale === "ja"
+                ? "/images/logo.png"
+                : "/images/Logo_en.svg"
             }
             alt="logo"
             width={120}
             height={34}
-            className="w-[120px] h-[34px] object-cover"
+            className="min-w-[120px] w-max h-[34px] object-cover"
           />
         </Link>
         <p

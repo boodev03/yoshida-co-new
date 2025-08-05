@@ -884,64 +884,64 @@
     "positions": {
       "sales": {
         "title": "Sales",
-        "description": "Responsible for communication with customers regarding estimates, delivery negotiations, and other product-related matters.",
+        "description": "Serve as the main point of contact for clients, managing inquiries, quotations, and delivery schedules to ensure smooth communication and customer satisfaction.",
         "bgImage": "/images/recruit/sales-car-bg.png",
         "leftDescImage": "/images/recruit/03 calling.webp",
         "roles": [
           {
-            "title": "Customer Meetings",
-            "description": "Handles order activities and creates quotations and contracts, serving as a bridge between product development departments and customers."
+            "title": "Customer Consultations",
+            "description": "Manage order processing and prepare quotes and contracts, acting as the key liaison between customers and the product development team."
           },
           {
-            "title": "Order Activities",
-            "description": "Challenges new customer development in diverse fields including energy, pharmaceuticals, and space, proposing Yoshida's technical strengths."
+            "title": "Order Processing ",
+            "description": "Take on the challenge of developing new customers across diverse fields such as energy, pharmaceuticals, and aerospace, while promoting Yoshida’s technical strengths."
           },
           {
-            "title": "Order Management",
-            "description": "Handles everything from issuing work numbers for ordered products to creating invoices and acceptance, managing the entire process until delivery."
+            "title": "Order management",
+            "description": "We manage the entire process from issuing order numbers for custom products to invoice creation and inspection, ensuring seamless handling through to delivery."
           }
         ]
       },
       "design": {
         "title": "Design",
-        "description": "Responsible for the entire design process of equipment centered on glove boxes, from customer interviews to project management.",
+        "description": "Responsible for the entire design process of glovebox-centered equipment, from gathering client requirements to managing the project.",
         "bgImage": "/images/recruit/design-bg.png",
         "roles": [
           {
-            "title": "Customer Interviews",
-            "description": "Attends meetings with sales staff and customers, carefully understanding customer needs and determining specifications.",
+            "title": "Requirement gathering",
+            "description": "Participate in client meetings alongside the sales team to accurately capture customer requirements and contribute to defining project specifications.",
             "image": "/images/recruit/05 designing with cad.webp"
           },
           {
             "title": "Design",
-            "description": "From conceptual design and structural analysis to manufacturing design, coordinates with related departments such as manufacturing and quality assurance.",
+            "description": "Collaborate closely with related departments such as manufacturing and quality assurance, progressing from conceptual design and strength analysis to detailed production design.",
             "image": "/images/recruit/06 discussing the design.webp"
           },
           {
             "title": "Project Management",
-            "description": "In addition to confirming manufacturing status at the factory, also accompanies on-site installation and final testing and inspection.",
+            "description": "Work closely with related departments such as manufacturing and quality assurance to advance projects from conceptual design and strength analysis through to detailed production design.",
             "image": "/images/recruit/07 interdepartmental cooperation.webp"
           }
         ]
       },
       "production": {
         "title": "Production Management",
-        "description": "Manages everything from material ordering to delivery while coordinating with many departments.",
+        "description": "Coordinate with multiple departments to manage the entire process from material ordering to delivery.",
         "bgImage": "/images/recruit/working-on-computer.png",
         "roles": [
           {
-            "title": "Production Planning & Process Management",
-            "description": "Creates process schedules and holds meetings in coordination with other departments. Monitors and manages on-site progress to prevent process delays.",
+            "title": "Production Planning and Process Control",
+            "description": "A schedule is prepared, and meetings with other departments are held to ensure alignment.\nProgress on site is closely tracked to prevent any delays in the process.",
             "image": "/images/recruit/09 process planning.webp"
           },
           {
             "title": "Material Procurement",
-            "description": "Develops parts from drawings and handles everything from material ordering to receipt. Also manages documentation such as material certifications.",
+            "description": "Handle the breakdown of parts from drawings and manage everything from ordering materials to receiving them. We also take care of document management, such as material certificates.",
             "image": "/images/recruit/10 material procurement.webp"
           },
           {
             "title": "Product Shipping",
-            "description": "Schedules packaging and vehicle arrangements according to delivery dates and ships products safely.",
+            "description": "We oversee factory production and also accompany on-site installation, final testing, and inspections.",
             "image": "/images/recruit/11 shipping products.webp"
           }
         ]
@@ -952,49 +952,49 @@
         "bgImage": "/images/recruit/tig-welding.png",
         "roles": [
           {
-            "title": "Fabrication & Welding",
-            "description": "Uses TIG welding and various welding methods with different materials to perform welding and assembly of nuclear equipment and industrial machinery.",
+            "title": "Fabrication and Welding",
+            "description": "Using TIG welding and various other methods with a range of materials, we perform welding and assembly of nuclear and industrial equipment.",
             "image": "/images/recruit/13 tig welding.webp"
           },
           {
             "title": "Machining",
-            "description": "Performs machining center processing, NC program creation, and machining accuracy measurement. Also manages production equipment and measuring instruments.",
+            "description": "Carry out machining center operations, create NC programs, and measure machining accuracy. We also manage production equipment and measuring instruments.",
             "image": "/images/recruit/14 large cnc machining.png"
           },
           {
-            "title": "Lathe Work",
-            "description": "Performs general-purpose lathe, NC lathe, and turning processing along with machining accuracy measurement.\nAlso manages production equipment and measuring instruments.",
+            "title": "Turning operations",
+            "description": "General-purpose lathes, NC lathes, and turning are used for machining and precision measurement.\nProduction equipment and measuring instruments are also managed.",
             "image": "/images/recruit/15 lathe machining.webp"
           }
         ]
       },
       "quality": {
         "title": "Quality Assurance",
-        "description": "Controls quality to meet required specifications based on information obtained through data collection, surveys during the manufacturing process, and meetings with customers.",
+        "description": "Quality is controlled based on data collected during production and information gathered through meetings with customers to ensure all requirements are met.",
         "bgImage": "/images/recruit/air-test.png",
         "roles": [
           {
-            "title": "Material Confirmation",
-            "description": "Inspects material properties and dimensions based on inspection procedures and drawings, and creates inspection reports.",
+            "title": "Material inspection",
+            "description": "Follow inspection procedures and drawings to verify material properties and dimensions, then prepare detailed inspection reports.",
             "image": "/images/recruit/17 material confirmation.webp"
           },
           {
-            "title": "Dimensional Inspection",
-            "description": "Performs dimensional inspection with calipers and measuring tapes. For complex structures and geometric tolerance parts, measures with 3D measuring machines and summarizes results in reports.",
+            "title": "Equipment-based inspection.",
+            "description": "Dimensions are checked with calipers and tape measures. Complex parts and tolerances are measured by 3D machines, with results documented in reports.",
             "image": "/images/recruit/18 3d measurement inspection.webp"
           },
           {
-            "title": "Witness Inspection & Report Creation",
-            "description": "Confirms the soundness of welded parts and product performance through airtightness tests and penetrant testing (PT) in the presence of customers.",
+            "title": "Conduct inspections and prepare reports.",
+            "description": "Weld integrity and product performance are verified with leak and penetrant (PT) tests, observed by the customer.",
             "image": "/images/recruit/19 airtightness test.png"
           }
         ]
       }
     },
     "workEnvironment": {
-      "title": "Yoshida's Environment",
-      "subtitle": "We introduce our employees' career paths and Yoshida's work environment.",
-      "mobileSubtitle": "We introduce our employees' career paths and Yoshida's work environment.",
+      "title": "Yoshida's Work Culture",
+      "subtitle": "Discover the career paths and work environment at Yoshida.",
+      "mobileSubtitle": "Discover the career paths and work environment at Yoshida.",
       "careerPath": "Career Path",
       "workEnvironment": "Workplace Environment"
     },

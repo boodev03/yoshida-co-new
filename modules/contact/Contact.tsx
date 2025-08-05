@@ -30,6 +30,7 @@ import ConfirmStep from "./ConfirmStep";
 import HeadingSite from "@/components/HeadingSite";
 import { useTranslations } from "@/providers/translation-provider";
 import parse from "html-react-parser";
+import Link from "next/link";
 
 const LabelCondition = ({ require }: { require?: boolean }) => {
   const { dict } = useTranslations();
@@ -75,7 +76,9 @@ export default function Contact() {
       .regex(/^0\d{9,10}$/, contact.fields.phone.invalid)
       .refine((val) => {
         const digits = val.replace(/[^\d]/g, "");
-        return digits.length >= 10 && digits.length <= 11 && digits.startsWith("0");
+        return (
+          digits.length >= 10 && digits.length <= 11 && digits.startsWith("0")
+        );
       }, contact.fields.phone.invalid),
 
     email: z
@@ -211,7 +214,11 @@ export default function Contact() {
       return `${digits.slice(0, 2)}-${digits.slice(2)}`;
     } else if (digits.length === 10) {
       // 10-digit format: 03-4500-7216 or 090-1234-5678
-      if (digits.startsWith('03') || digits.startsWith('04') || digits.startsWith('06')) {
+      if (
+        digits.startsWith("03") ||
+        digits.startsWith("04") ||
+        digits.startsWith("06")
+      ) {
         return `${digits.slice(0, 2)}-${digits.slice(2, 6)}-${digits.slice(6)}`;
       } else {
         return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
@@ -221,7 +228,10 @@ export default function Contact() {
       return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
     } else {
       // Fallback for other lengths
-      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
+      return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(
+        7,
+        11
+      )}`;
     }
   };
 
@@ -298,13 +308,13 @@ export default function Contact() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="見積り依頼">
+                          <SelectItem value={contact.fields.category.options.quote}>
                             {contact.fields.category.options.quote}
                           </SelectItem>
-                          <SelectItem value="製品への質問">
+                          <SelectItem value={contact.fields.category.options.product}>
                             {contact.fields.category.options.product}
                           </SelectItem>
-                          <SelectItem value="その他">
+                          <SelectItem value={contact.fields.category.options.other}>
                             {contact.fields.category.options.other}
                           </SelectItem>
                         </SelectContent>
@@ -515,9 +525,11 @@ export default function Contact() {
                         checked={field.value}
                         onChange={() => field.onChange(!field.value)}
                       >
-                        <p className="text-normal text-[13px] md:text-[14px] text-web-vivid">
-                          {contact.fields.privacy.label}
-                        </p>
+                        <Link href="/company/policy" className="block">
+                          <p className="text-normal underline text-[13px] md:text-[14px] text-web-vivid">
+                            {contact.fields.privacy.label}
+                          </p>
+                        </Link>
                         <p className="text-normal text-[13px] md:text-[14px] text-web-dark">
                           {contact.fields.privacy.agree}
                         </p>

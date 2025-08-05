@@ -7,7 +7,7 @@ import HeaderButton from "./HeaderButton";
 import { useTranslations } from "@/providers/translation-provider";
 
 export default function Footer() {
-  const { dict } = useTranslations();
+  const { dict, locale } = useTranslations();
   const footer = dict.recruit.footer;
 
   return (
@@ -35,7 +35,7 @@ export default function Footer() {
                 alt="logo"
                 width={120}
                 height={34}
-                className="w-[120px] h-[34px] object-cover"
+                className="min-w-[120px] w-max h-[34px] object-cover"
                 quality={100}
               />
             </Link>

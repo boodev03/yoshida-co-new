@@ -19,6 +19,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useState } from "react";
 
 interface IProps {
   isScrolled: boolean;
@@ -28,7 +29,7 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
   const { tPath, locale } = useTranslations();
   const router = useRouter();
   const pathname = usePathname();
-
+  const [open, setIsOpen] = useState(false);
   const handleLanguageChange = (newLocale: "en" | "ja") => {
     const segments = pathname.split("/");
     segments[1] = newLocale;
@@ -101,7 +102,7 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
     },
   ];
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setIsOpen}>
       <SheetTrigger
         className={cn("text-web-main md:text-white", {
           "text-web-main md:text-black": isScrolled,
@@ -118,6 +119,7 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
                 <Link
                   href={item.href}
                   className="text-white text-sm font-bold tracking-[-0.015em] hover:opacity-30"
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
@@ -127,6 +129,7 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
                       key={child.label}
                       href={child.href}
                       className="text-white block text-sm font-bold tracking-[-0.015em] hover:opacity-30"
+                      onClick={() => setIsOpen(false)}
                     >
                       {child.label}
                     </Link>
@@ -138,6 +141,7 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
                 <Link
                   href={item.href}
                   className="text-white text-sm font-bold tracking-[-0.015em] hover:opacity-30"
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
@@ -147,7 +151,7 @@ export default function HamburgerMenu({ isScrolled }: IProps) {
         </div>
 
         <div className="flex flex-col items-center gap-[62px]">
-          <Link href="/contact" className="inline-block">
+          <Link href="/contact" className="inline-block" onClick={() => setIsOpen(false)}>
             <Button className="bg-white text-web-main hover:bg-white/80">
               {tPath("common.contact")}
             </Button>

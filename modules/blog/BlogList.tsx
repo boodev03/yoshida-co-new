@@ -1,31 +1,30 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import React, { useState } from "react";
 import BlogItem from "./BlogItem";
 import { ChevronRight } from "@/components/icons/ChevronRight";
-import { useGetNewsWithPagePagination } from "@/hooks/useGetNews";
+import { useGetNews } from "@/hooks/useGetNews";
 import { useTranslations } from "@/providers/translation-provider";
+import { useBlogContext } from "./BlogContext";
 
 const ITEMS_PER_PAGE = 6; // Show 6 items per page
 
 export default function BlogList() {
   const { news: newsTranslations, locale } = useTranslations();
+  const { activeCategory } = useBlogContext();
   const [currentPage, setCurrentPage] = useState(1);
-  const [estimatedTotalPages, setEstimatedTotalPages] = useState(1);
-  const { data, isLoading, error } = useGetNewsWithPagePagination(
-    currentPage,
-    ITEMS_PER_PAGE,
-    locale
-  );
+  
+  // Fetch all news at once for client-side filtering and pagination
+  const { data, isLoading, error } = useGetNews(100, locale); // Fetch more items
 
-  // Update estimated total pages based on current data
-  if (data && data.hasMore && currentPage >= estimatedTotalPages) {
-    setEstimatedTotalPages(currentPage + 1);
-  }
+  // Reset to page 1 when category changes
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory]);
 
   const handlePageChange = (pageNumber: number) => {
-    if (pageNumber >= 1) {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
       // Smooth scroll to top for better UX
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -33,11 +32,17 @@ export default function BlogList() {
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 1) setCurrentPage((prev) => prev - 1);
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const handleNextPage = () => {
-    if (currentPage < estimatedTotalPages) setCurrentPage((prev) => prev + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   if (isLoading) {
@@ -65,10 +70,36 @@ export default function BlogList() {
   }
 
   const news = data?.cases || [];
-  const hasMore = data?.hasMore || false;
 
-  // Transform news data to match BlogItem props
-  const transformedItems = news.map((newsItem) => ({
+  // Filter news based on active category
+  const filteredNews = news.filter((newsItem) => {
+    // If "All" is selected, show all items
+    if (activeCategory === newsTranslations.categories.all) {
+      return true;
+    }
+    
+    // For announcement category, check if category is "news" or "new" (case-insensitive)
+    if (activeCategory === newsTranslations.categories.announcement) {
+      const categoryLower = newsItem.category.toLowerCase();
+      return categoryLower === "news" || categoryLower === "new";
+    }
+    
+    // For development category, match exactly
+    if (activeCategory === newsTranslations.categories.development) {
+      return newsItem.category.toLowerCase() === "development";
+    }
+    
+    return false;
+  });
+
+  // Calculate pagination for filtered results
+  const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedNews = filteredNews.slice(startIndex, endIndex);
+
+  // Transform paginated news data to match BlogItem props
+  const transformedItems = paginatedNews.map((newsItem) => ({
     image: newsItem.thumbnail,
     category: newsItem.category,
     title: newsItem.title,
@@ -83,7 +114,7 @@ export default function BlogList() {
 
   // Generate page numbers array
   const pageNumbers = [];
-  for (let i = 1; i <= estimatedTotalPages; i++) {
+  for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
@@ -95,45 +126,56 @@ export default function BlogList() {
         ))}
       </div>
 
-      {/* Pagination */}
-      <div className="flex items-center justify-center gap-14">
-        <button
-          onClick={handlePrevPage}
-          className="p-2 text-web-main transition-colors rotate-180 disabled:!cursor-not-allowed"
-          disabled={currentPage === 1}
-        >
-          <ChevronRight />
-        </button>
+      {/* Pagination - only show if there are multiple pages */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-14">
+          <button
+            onClick={handlePrevPage}
+            className={cn(
+              "p-2 text-web-main transition-colors rotate-180",
+              currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:opacity-70"
+            )}
+            disabled={currentPage === 1}
+          >
+            <ChevronRight />
+          </button>
 
-        <div className="flex items-center gap-8">
-          {pageNumbers.map((number) => (
-            <button
-              key={number}
-              onClick={() => handlePageChange(number)}
-              className={cn(
-                "w-6 h-auto block relative text-normal transition-all duration-300",
-                currentPage === number
-                  ? "text-web-dark after:absolute after:-bottom-3 after:left-0 after:w-full after:h-0.5 after:bg-web-main"
-                  : "hover:opacity-30"
-              )}
-            >
-              {number}
-            </button>
-          ))}
+          <div className="flex items-center gap-8">
+            {pageNumbers.map((number) => (
+              <button
+                key={number}
+                onClick={() => handlePageChange(number)}
+                className={cn(
+                  "w-6 h-auto block relative text-normal transition-all duration-300",
+                  currentPage === number
+                    ? "text-web-dark after:absolute after:-bottom-3 after:left-0 after:w-full after:h-0.5 after:bg-web-main"
+                    : "hover:opacity-30"
+                )}
+              >
+                {number}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={handleNextPage}
+            className={cn(
+              "p-2 text-web-main transition-colors",
+              currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:opacity-70"
+            )}
+            disabled={currentPage === totalPages}
+          >
+            <ChevronRight />
+          </button>
         </div>
+      )}
 
-        {estimatedTotalPages > pageNumbers.length && (
-          <span className="px-2">...</span>
-        )}
-
-        <button
-          onClick={handleNextPage}
-          className="p-2 text-web-main transition-colors"
-          disabled={currentPage === estimatedTotalPages || !hasMore}
-        >
-          <ChevronRight />
-        </button>
-      </div>
+      {/* Show message when no items found */}
+      {filteredNews.length === 0 && !isLoading && (
+        <div className="text-center text-gray-500 py-12">
+          {newsTranslations.noItemsFound || "No articles found for this category."}
+        </div>
+      )}
     </div>
   );
 }

@@ -61,7 +61,7 @@ const LanguageButton = () => {
 };
 
 export default function Footer() {
-  const { home } = useTranslations();
+  const { home, locale } = useTranslations();
   const footer = home.footer;
   return (
     <footer
@@ -72,7 +72,11 @@ export default function Footer() {
         <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center gap-[84px] xl:gap-0">
           <div className="basis-1/5 space-y-12">
             <Image
-              src="/images/light-logo.png"
+              src={
+                locale === "ja"
+                  ? "/images/light-logo.png"
+                  : "/images/Logo_en_white.svg"
+              }
               alt="logo"
               width={120}
               height={34}

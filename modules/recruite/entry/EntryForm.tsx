@@ -24,6 +24,7 @@ import ConfirmStep from "./ConfirmStep";
 import { useTranslations } from "@/providers/translation-provider";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const LabelCondition = ({ require }: { require?: boolean }) => {
   const { dict } = useTranslations();
@@ -533,7 +534,7 @@ export default function EntryForm() {
                 <div className={formControlClass}>
                   <Label className={labelClass}>
                     {entryForm.fields.attachment.label}
-                    <LabelCondition require />
+                    <LabelCondition />
                   </Label>
 
                   <div className="space-y-2 flex-1">
@@ -635,9 +636,11 @@ export default function EntryForm() {
                           checked={field.value}
                           onChange={() => field.onChange(!field.value)}
                         >
-                          <p className="text-normal underline text-[13px] md:text-[14px] text-web-vivid">
-                            {entryForm.fields.privacy.label}
-                          </p>
+                          <Link href="/company/policy" className="block">
+                            <p className="text-normal underline text-[13px] md:text-[14px] text-web-vivid">
+                              {entryForm.fields.privacy.label}
+                            </p>
+                          </Link>
                           <p className="text-normal text-[13px] md:text-[14px] text-web-dark">
                             {entryForm.fields.privacy.agree}
                           </p>

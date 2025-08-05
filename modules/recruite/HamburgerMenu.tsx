@@ -18,6 +18,7 @@ import { Globe } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface IProps {
   isScrolled: boolean;
@@ -92,8 +93,10 @@ const navbarItems = [
 ];
 
 export default function HamburgerMenu({ isScrolled, isWhite = false }: IProps) {
+  const [open, setIsOpen] = useState(false);
+  
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setIsOpen}>
       <SheetTrigger
         className={cn("text-web-main md:text-white", {
           "text-web-main md:text-black": isScrolled,
@@ -110,6 +113,7 @@ export default function HamburgerMenu({ isScrolled, isWhite = false }: IProps) {
               <Link
                 href={item.href}
                 className="font-shippori-mincho text-white flex justify-center text-sm font-bold tracking-[-0.015em] hover:opacity-30"
+                onClick={() => setIsOpen(false)}
               >
                 {item.label}
               </Link>
@@ -118,7 +122,7 @@ export default function HamburgerMenu({ isScrolled, isWhite = false }: IProps) {
         </div>
 
         <div className="flex flex-col items-center gap-[62px]">
-          <Link href="/recruit/entry">
+          <Link href="/recruit/entry" onClick={() => setIsOpen(false)}>
             <Button className="font-shippori-mincho bg-white hover:border-white text-web-main rounded-[3px] hover:bg-web-main hover:text-white">
               エントリー
             </Button>
