@@ -52,7 +52,7 @@ export default function HeadingSite({
       ></motion.div>
       <div className="flex-1 flex flex-col items-end md:aspect-auto">
         <motion.div
-          className="relative aspect-video w-[68.88889%]"
+          className="relative aspect-video w-[90%] md:w-[68.88889%]"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-50px" }}

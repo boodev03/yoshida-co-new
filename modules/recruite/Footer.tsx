@@ -31,7 +31,11 @@ export default function Footer() {
           >
             <Link href="/recruit" className="block size-full">
               <Image
-                src="/images/light-logo.png"
+                src={
+                  locale === "ja"
+                    ? "/images/light-logo.png"
+                    : "/images/Logo_en_white.svg"
+                }
                 alt="logo"
                 width={120}
                 height={34}

@@ -11,7 +11,7 @@ export default function Policy() {
       <HeadingSite
         title="PRIVACY POLICY"
         subtitle={policy.subtitle}
-        imageUrl="/images/achivement.png"
+        imageUrl="/images/company/head-office.webp"
         breadcrumbs={[
           { label: policy.breadcrumbs.top },
           { label: policy.breadcrumbs.contact },
