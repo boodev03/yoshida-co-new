@@ -167,7 +167,7 @@ export default function AboutUs() {
               </motion.p>
             </motion.div>
             <div className="aspect-square w-[544px] max-w-full relative -top-[70px] -left-6 z-0 mlg:hidden">
-              <Image src="/images/job-opening.png" alt="About Us" fill />
+              <Image src="/images/recruit/Mask group.png" alt="About Us" fill />
             </div>
           </div>
 
