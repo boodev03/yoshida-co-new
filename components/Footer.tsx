@@ -64,7 +64,10 @@ export default function Footer() {
   const { home } = useTranslations();
   const footer = home.footer;
   return (
-    <footer id="footer" className="bg-web-dark pb-6 relative">
+    <footer
+      id="footer"
+      className="bg-web-dark pb-6 relative pt-[60px] mlg:pt-0"
+    >
       <div className="container">
         <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center gap-[84px] xl:gap-0">
           <div className="basis-1/5 space-y-12">

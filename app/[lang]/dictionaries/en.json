@@ -89,7 +89,7 @@
     "career": {
       "title": "Job Openings",
       "heading": "Recruitment",
-      "description": "At Yoshida Inc., Ltd., we’re looking for people who want to use their skills to help make a difference in society.",
+      "description": "At Yoshida Inc. we’re looking for people who want to use their skills to help make a difference in society.",
       "button": "View Careers"
     },
     "contact": {
@@ -869,8 +869,8 @@
     },
     "hero": {
       "scroll": "Scroll",
-      "title1": "宇宙まで",
-      "title2": "続く挑戦を",
+      "title1": "Taking on Challenges",
+      "title2": "all the way to space",
       "subtitle": "Always be a Pioneer."
     },
     "aboutUs": {
@@ -878,8 +878,8 @@
       "title1": "from decommissioning to space.",
       "title2": "A place where engineers continue their challenges",
       "content": "At Yoshida Inc., we leverage the shielding and isolation technologies developed through the decommissioning of Fukushima Daiichi Nuclear Power Plant and apply them to pharmaceutical and aerospace industries.\nBy partnering with universities, research institutes, and startups, we’re constantly exploring new frontiers across a variety of industries.\nEvery day brings fresh, unprecedented challenges—nothing here is easy.\nBut just like in an experiment, we keep generating new ideas, and as a close-knit team working across departments, we face these challenges together.\n\nThrough continuous technical growth, you’ll expand your knowledge and skills, gaining the power to shape a new future.\n\nAlways be a Pioneer.\nAt Yoshida, we welcome your pioneering spirit.",
-      "button": "業務について",
-      "subtitle": "お客様の課題をワンストップで解決するヨシダの仕事。"
+      "button": "What We Do",
+      "subtitle": "Yoshida: Your one-stop solution for customer challenges."
     },
     "positions": {
       "sales": {

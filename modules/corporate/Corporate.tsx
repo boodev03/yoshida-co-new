@@ -23,7 +23,7 @@ export default function Corporate() {
       />
 
       {/* Main content */}
-      <div className="mt-[60px] md:mt-[120px] pb-[60px] mlg:pb-[390px] px-0 sm:px-6 space-y-8 md:space-y-20">
+      <div className="mt-[60px] md:mt-[120px] pb-[60px] mlg:pb-[390px] space-y-8 md:space-y-20">
         <div className="container mx-auto">
           <CorporateSelect />
         </div>

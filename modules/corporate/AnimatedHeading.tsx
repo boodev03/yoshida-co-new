@@ -34,7 +34,7 @@ const AnimatedHeading = () => {
       </motion.div>
 
       <div className="relative container mx-auto">
-        <p className="absolute bottom-0 left-6 xl:left-8 2xl:left-10 text-xl mlg:text-[32px] text-web-main font-bold">
+        <p className="absolute bottom-0 left-6 xl:left-8 2xl:left-10 text-xl mlg:text-[32px] text-web-main font-bold whitespace-pre-line">
           {company.animatedHeading.subText}
         </p>
       </div>

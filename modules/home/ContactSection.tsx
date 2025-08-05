@@ -121,7 +121,7 @@ export default function ContactSection() {
                   <Phone />
                   {contact?.phone?.number ?? "029-297-1005"}
                 </p>
-                <p className="group-hover:text-white transition-all duration-300 text-web-light font-medium text-sm tracking-[-0.015em] leading-[17px]">
+                <p className="group-hover:text-white transition-all duration-300 text-web-light font-medium text-sm tracking-[-0.015em] leading-[17px] whitespace-pre-line">
                   {contact?.phone?.hours ??
                     "受付時間 8:00 - 17:00 ( 土日・祝日除く )"}
                 </p>

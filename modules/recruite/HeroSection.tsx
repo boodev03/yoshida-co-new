@@ -2,9 +2,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations } from "@/providers/translation-provider";
+import { cn } from "@/lib/utils";
 
 export default function HeroSection() {
-  const { recruit } = useTranslations();
+  const { recruit, locale } = useTranslations();
   const { hero } = recruit;
 
   const ScrollDown = () => {
@@ -64,7 +65,10 @@ export default function HeroSection() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute top-10 sm:top-8 md:top-6 mlg:-top-6 right-0 translate-x-[70%] text-2xl sm:text-[28px] md:text-[32px] mlg:text-[56px] leading-[1.625] tracking-[0.02em] text-white font-shippori-mincho font-bold"
+            className={cn(
+              "absolute top-10 sm:top-8 md:top-6 mlg:-top-6 right-0 translate-x-[70%] text-2xl sm:text-[28px] md:text-[32px] mlg:text-[56px] leading-[1.625] tracking-[0.02em] text-white font-shippori-mincho font-bold",
+              locale === "en" && "hidden"
+            )}
           >
             {hero.title1.split("").map((char, index) => (
               <span key={index}>
@@ -75,14 +79,53 @@ export default function HeroSection() {
           <motion.p
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            style={{
+              writingMode: "vertical-lr",
+              WebkitWritingMode: "vertical-lr",
+              msWritingMode: "vertical-lr",
+            }}
+            className={cn(
+              locale === "ja"
+                ? "hidden"
+                : "absolute top-10 size-max sm:top-8 md:top-6 mlg:-top-6 right-0 translate-x-[70%] text-2xl sm:text-[28px] md:text-[32px] mlg:text-[52px] leading-[1.625] tracking-[0.02em] text-white font-shippori-mincho font-bold"
+            )}
+          >
+            {hero.title1}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="absolute top-1/2 -translate-y-3/4 sm:-translate-y-2/3 md:-translate-y-1/2 mlg:translate-y-1/5 mlg:top-0 mlg:bottom-5 right-4 sm:right-6 md:right-8 xl:right-11 text-2xl sm:text-[28px] md:text-[32px] mlg:text-[56px] leading-[1.625] tracking-[0.02em] text-white font-shippori-mincho font-bold"
+            className={cn(
+              "absolute top-1/2 -translate-y-3/4 sm:-translate-y-2/3 md:-translate-y-1/2 mlg:translate-y-1/5 mlg:top-0 mlg:bottom-5 right-4 sm:right-6 md:right-8 xl:right-11 text-2xl sm:text-[28px] md:text-[32px] mlg:text-[56px] leading-[1.625] tracking-[0.02em] text-white font-shippori-mincho font-bold",
+              locale === "en" && "hidden"
+            )}
           >
             {hero.title2.split("").map((char, index) => (
               <span key={index}>
                 {char} {index < hero.title2.length - 1 && <br />}
               </span>
             ))}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            style={{
+              writingMode: "vertical-lr",
+              WebkitWritingMode: "vertical-lr",
+              msWritingMode: "vertical-lr",
+            }}
+            className={cn(
+              locale === "ja"
+                ? "hidden"
+                : "absolute top-1/2 size-max -translate-y-3/4 sm:-translate-y-2/3 md:-translate-y-1/2 mlg:translate-y-1/5 mlg:-top-6 right-4 sm:right-6 md:right-8 xl:right-11 text-2xl sm:text-[28px] md:text-[32px] mlg:text-[52px] leading-[1.625] tracking-[0.02em] text-white font-shippori-mincho font-bold"
+            )}
+          >
+            {hero.title2}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

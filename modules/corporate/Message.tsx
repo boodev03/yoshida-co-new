@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 export default function Message() {
   const { company } = useTranslations();
   return (
-    <section className="relative px-6 mlg:px-0">
+    <section className="relative">
       <div
         className={cn(
           "w-full max-w-[1048px] shrink-0 aspect-video bg-web-light-bg overflow-hidden",
@@ -75,7 +75,7 @@ export default function Message() {
                   {company.message.content}
                 </p>
 
-                <div className="flex items-baseline gap-4 mlg:justify-end relative z-10">
+                <div className="flex items-baseline gap-4 mlg:justify-end flex-wrap relative z-10">
                   <p className="text-xl mlg:text-[28px] tracking-[-0.02em] text-web-main font-bold">
                     {company.message.ceo}
                   </p>

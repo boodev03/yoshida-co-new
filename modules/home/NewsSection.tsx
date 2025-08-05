@@ -91,17 +91,18 @@ const NewCard = ({
 };
 
 export default function NewsSection() {
-  const { tPath } = useTranslations();
-  const { data: newsData, isLoading, error } = useGetNews(4);
+  const { tPath, locale } = useTranslations();
+  const { data: newsData, isLoading, error } = useGetNews(4, locale);
 
-  const news = newsData?.cases?.slice(0, 4).map(item => ({
-    image: item.thumbnail || "/images/news-1.png",
-    category: item.category || tPath("home.news.category"),
-    title: item.title,
-    shortDesc: item.cardDescription,
-    date: item.date,
-    href: `/news/${item.id}`,
-  })) || [];
+  const news =
+    newsData?.cases?.slice(0, 4).map((item) => ({
+      image: item.thumbnail || "/images/news-1.png",
+      category: item.category || tPath("home.news.category"),
+      title: item.title,
+      shortDesc: item.cardDescription,
+      date: item.date,
+      href: `/news/${item.id}`,
+    })) || [];
 
   return (
     <motion.section

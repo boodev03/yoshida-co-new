@@ -186,7 +186,11 @@ export default function AboutUs() {
             </motion.div>
 
             <div className="aspect-square w-[544px] max-w-full relative -top-[70px] z-0 hidden mlg:block">
-              <Image src="/images/recruit/about-us.webp" alt="About Us" fill />
+              <Image
+                src="https://pub-1c108179b7cb46a98dc6dd25e0df069c.r2.dev/about-us.webp"
+                alt="About Us"
+                fill
+              />
             </div>
           </div>
         </div>
