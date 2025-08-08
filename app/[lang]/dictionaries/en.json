@@ -1001,6 +1001,10 @@
     "navbar": {
       "items": [
         {
+          "label": "Top",
+          "href": "/recruit"
+        },
+        {
           "label": "Career Path",
           "href": "/recruit/career-path"
         },

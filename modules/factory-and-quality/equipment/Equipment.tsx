@@ -75,12 +75,12 @@ export default function Equipment() {
         </div>
       )}
 
-      <div className="flex justify-center md:hidden mt-6">
+      {/* <div className="flex justify-center md:hidden mt-6">
         <Button className="group relative overflow-hidden">
           {equipmentSection.buttonText}
           <ArrowRight />
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 }

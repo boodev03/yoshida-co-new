@@ -8,6 +8,7 @@ interface IProps {
   // Image position
   align?: "left" | "right";
   developmentItems?: string[];
+  button?: React.ReactNode;
 }
 
 export default function ContentSectionMobile({
@@ -17,6 +18,7 @@ export default function ContentSectionMobile({
   imageUrl,
   align = "left",
   developmentItems,
+  button,
 }: IProps) {
   return (
     <div className="px-6 space-y-4 relative">
@@ -57,6 +59,9 @@ export default function ContentSectionMobile({
         }}
         className="bg-web-gray w-full flex justify-end items-center aspect-video absolute -bottom-10 right-0 z-0"
       />
+      {button && (
+        <div className="flex justify-center items-center">{button}</div>
+      )}
     </div>
   );
 }

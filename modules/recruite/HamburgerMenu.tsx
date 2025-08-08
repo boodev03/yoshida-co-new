@@ -73,28 +73,30 @@ const LanguageButton = ({ isWhite }: IProps) => {
   );
 };
 
-const navbarItems = [
+const getNavbarItems = (dict: any) => [
   {
-    label: "Top",
+    label: dict.recruit.navbar.items[0].label,
     href: "/recruit",
   },
   {
-    label: "キャリアパス",
+    label: dict.recruit.navbar.items[1].label,
     href: "/recruit/career-path",
   },
   {
-    label: "働く環境",
+    label: dict.recruit.navbar.items[2].label,
     href: "/recruit/place",
   },
   {
-    label: "募集要項",
+    label: dict.recruit.navbar.items[3].label,
     href: "/recruit/requirement",
   },
 ];
 
 export default function HamburgerMenu({ isScrolled, isWhite = false }: IProps) {
   const [open, setIsOpen] = useState(false);
-  
+  const { dict } = useTranslations();
+  const navbarItems = getNavbarItems(dict);
+
   return (
     <Sheet open={open} onOpenChange={setIsOpen}>
       <SheetTrigger
@@ -124,7 +126,7 @@ export default function HamburgerMenu({ isScrolled, isWhite = false }: IProps) {
         <div className="flex flex-col items-center gap-[62px]">
           <Link href="/recruit/entry" onClick={() => setIsOpen(false)}>
             <Button className="font-shippori-mincho bg-white hover:border-white text-web-main rounded-[3px] hover:bg-web-main hover:text-white">
-              エントリー
+              {dict.recruit.headerButton.entry}
             </Button>
           </Link>
           <div className="flex items-center gap-6">

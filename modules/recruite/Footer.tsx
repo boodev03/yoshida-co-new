@@ -39,7 +39,7 @@ export default function Footer() {
                 alt="logo"
                 width={120}
                 height={34}
-                className="min-w-[120px] w-max h-[34px] object-cover"
+                className="min-w-[120px] w-max h-[34px] object-contain"
                 quality={100}
               />
             </Link>

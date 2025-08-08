@@ -67,6 +67,14 @@ export default function FactoryAndQuality() {
             description={equipment.mobileDescription}
             imageUrl="/images/factory-and-quality/equipment.webp"
             developmentItems={equipment.mobileDevelopmentItems}
+            button={
+              <Link href="/factory-and-quality/quality">
+                <Button className="group relative overflow-hidden">
+                  {quality.buttonText}
+                  <ArrowRight />
+                </Button>
+              </Link>
+            }
           />
           <ContentSectionMobile
             title={quality.title}
@@ -74,6 +82,14 @@ export default function FactoryAndQuality() {
             description={quality.description}
             imageUrl="/images/recruit/19 airtightness test.png"
             align="right"
+            button={
+              <Link href="/factory-and-quality/quality">
+                <Button className="group relative overflow-hidden">
+                  {quality.buttonText}
+                  <ArrowRight />
+                </Button>
+              </Link>
+            }
           />
         </div>
       </div>

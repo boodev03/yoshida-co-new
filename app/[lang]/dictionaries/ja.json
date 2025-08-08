@@ -432,6 +432,10 @@
     "navbar": {
       "items": [
         {
+          "label": "Top",
+          "href": "/recruit"
+        },
+        {
           "label": "キャリアパス",
           "href": "/recruit/career-path"
         },
